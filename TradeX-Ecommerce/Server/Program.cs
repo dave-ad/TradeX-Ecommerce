@@ -8,6 +8,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
 builder.Services.AddEndpointsApiExplorer();
+//builder.Services.AddScoped<IProductRepo, ProductRepo>();
 //builder.Services.AddSwaggerGen();
 
 builder.Services.AddDbContext<AppDbContext>(Options =>
