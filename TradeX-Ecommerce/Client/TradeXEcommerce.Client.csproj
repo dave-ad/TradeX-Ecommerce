@@ -13,7 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Shared\TradeX-Ecommerce.Shared.csproj" />
+    <ProjectReference Include="..\Shared\TradeXEcommerce.Shared.csproj" />
   </ItemGroup>
 
 </Project>

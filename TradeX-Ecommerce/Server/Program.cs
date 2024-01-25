@@ -1,11 +1,19 @@
 using Microsoft.AspNetCore.ResponseCompression;
 
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
 builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
+builder.Services.AddEndpointsApiExplorer();
+//builder.Services.AddSwaggerGen();
+
+builder.Services.AddDbContext<AppDbContext>(Options =>
+    {
+        Options.UseSqlServer(builder.Configuration.GetConnectionString("DevConnection"));
+    });
 
 var app = builder.Build();
 
