@@ -36,7 +36,7 @@ public class ProductRepo : IProductRepo
         else
         {
             Response.Success = false;
-            Response.Message = "Sorry New product object is empty!";
+            Response.Message = "Sorry new product object is empty!";
             Response.CssClass = "warning";
             Response.SingleProduct = null!;
             return Response;

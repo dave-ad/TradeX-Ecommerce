@@ -1,5 +1,3 @@
-using Microsoft.AspNetCore.ResponseCompression;
-
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,8 +6,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
 builder.Services.AddEndpointsApiExplorer();
-//builder.Services.AddScoped<IProductRepo, ProductRepo>();
-//builder.Services.AddSwaggerGen();
+builder.Services.AddScoped<IProductRepo, ProductRepo>();
+builder.Services.AddSwaggerGen();
 
 builder.Services.AddDbContext<AppDbContext>(Options =>
     {
@@ -34,6 +32,8 @@ app.UseHttpsRedirection();
 
 app.UseBlazorFrameworkFiles();
 app.UseStaticFiles();
+app.UseSwaggerUI();
+app.UseSwagger();
 
 app.UseRouting();
 
