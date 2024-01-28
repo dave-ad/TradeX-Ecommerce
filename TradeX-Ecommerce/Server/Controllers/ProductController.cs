@@ -16,7 +16,7 @@ public class ProductController : ControllerBase
         return Ok(await productRepo.AddProduct(NewProduct));
     }
 
-    [HttpGet("Get-Products")]
+    [HttpGet]
     public async Task<ActionResult<ServiceModel>> GetProducts() => Ok(await productRepo.GetProducts());
     
     [HttpGet("Get-Product/{ProductId:int}")]
