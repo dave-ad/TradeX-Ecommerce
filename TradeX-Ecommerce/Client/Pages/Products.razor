@@ -1,0 +1,15 @@
+﻿@page "/"
+<h3>Products</h3>
+
+@code {
+    public ServiceModel serviceModel = new ServiceModel();
+
+    protected override async Task OnInitializedAsync()
+    {
+        await GetProducts();
+    }
+
+
+    private async Task GetProducts() => serviceModel = await productService.GetProducts();
+
+}

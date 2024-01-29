@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34316.72
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TradeXEcommerce.Server", "TradeX-Ecommerce\Server\TradeXEcommerce.Server.csproj", "{93AF40A3-7C4B-41EE-93A6-7FFC33889BF5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TradeXEcommerce.Server", "TradeX-Ecommerce\Server\TradeXEcommerce.Server.csproj", "{93AF40A3-7C4B-41EE-93A6-7FFC33889BF5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TradeXEcommerce.Client", "TradeX-Ecommerce\Client\TradeXEcommerce.Client.csproj", "{3E28F23C-2906-4077-AE65-9FEDB4F11935}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TradeXEcommerce.Client", "TradeX-Ecommerce\Client\TradeXEcommerce.Client.csproj", "{3E28F23C-2906-4077-AE65-9FEDB4F11935}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TradeXEcommerce.Shared", "TradeX-Ecommerce\Shared\TradeXEcommerce.Shared.csproj", "{F4D3EFD9-C45B-4BDE-97CF-AE94DAA30015}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TradeXEcommerce.Shared", "TradeX-Ecommerce\Shared\TradeXEcommerce.Shared.csproj", "{F4D3EFD9-C45B-4BDE-97CF-AE94DAA30015}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
