@@ -8,28 +8,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Remove="Pages\Products.razor" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="7.0.13" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="7.0.13" PrivateAssets="all" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Shared\TradeXEcommerce.Shared.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <UpToDateCheckInput Remove="Pages\Products.razor" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <_ContentIncludedByDefault Remove="Pages\Products.razor" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="Pages\Products.razor" />
   </ItemGroup>
 
 </Project>
