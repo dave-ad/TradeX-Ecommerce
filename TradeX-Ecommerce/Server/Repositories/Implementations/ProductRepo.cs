@@ -41,6 +41,26 @@ public class ProductRepo : IProductRepo
         }
     }
 
+    public async Task<ServiceModel> DeleteProduct(int ProductId)
+    {
+        var response = new ServiceModel();
+        var product = await GetProduct(ProductId);
+        if (product.SingleProduct != null)
+        {
+            appDbContext.Products.Remove(product.SingleProduct);
+            await appDbContext.SaveChangesAsync();
+            response.Message = "Product Deleted!";
+            response.CssClass = "success fw-bold";
+            response.SingleProduct = product.SingleProduct;
+        }
+        else
+        {
+            response.Message = product.Message;
+            response.CssClass = product.CssClass;
+        }
+        return response;
+    }
+
     public async Task<ServiceModel> GetProduct(int ProductId)
     {
         var Response = new ServiceModel();
