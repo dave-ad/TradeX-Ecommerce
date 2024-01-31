@@ -1,6 +1,4 @@
-﻿using TradeXEcommerce.Server.Data;
-
-namespace TradeXEcommerce.Server.Repositories.Implementations;
+﻿namespace TradeXEcommerce.Server.Repositories.Implementations;
 
 public class ProductRepo : IProductRepo
 {
