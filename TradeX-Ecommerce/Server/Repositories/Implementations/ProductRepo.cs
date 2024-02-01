@@ -52,6 +52,8 @@ public class ProductRepo : IProductRepo
             response.Message = "Product Deleted!";
             response.CssClass = "success fw-bold";
             response.SingleProduct = product.SingleProduct;
+            var products = await GetProducts();
+            response.ProductList = products.ProductList;
         }
         else
         {

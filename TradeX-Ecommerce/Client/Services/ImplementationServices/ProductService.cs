@@ -1,7 +1,4 @@
-﻿using System.Net.Http.Json;
-using TradeXEcommerce.Client.Services.InterfaceServices;
-
-namespace TradeXEcommerce.Client.Services.ImplementationServices;
+﻿namespace TradeXEcommerce.Client.Services.ImplementationServices;
 
 public class ProductService : IProductService
 {
@@ -17,6 +14,12 @@ public class ProductService : IProductService
         return await product.Content.ReadFromJsonAsync<ServiceModel?>();
     }
 
+    public async Task<ServiceModel?> DeleteProduct(int ProductId)
+    {
+        var result = await httpClient.DeleteFromJsonAsync<ServiceModel>($"api/Product/Delete-Product/{ProductId}");
+        return result;
+    }
+
     public async Task<ServiceModel?> GetProduct(int ProductId)
     {
         var result = await httpClient.GetAsync($"api/Product/Get-Product/{ProductId}");
@@ -29,3 +32,4 @@ public class ProductService : IProductService
         return await result.Content.ReadFromJsonAsync<ServiceModel?>();
     }
 }
+    
