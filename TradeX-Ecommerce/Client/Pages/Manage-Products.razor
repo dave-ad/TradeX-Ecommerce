@@ -91,9 +91,11 @@ else
         if (confirm)
         {
             var product = await productService.DeleteProduct(id);
-            Message = product!.Single!.Name + "deleted from the list";
-            CssClass = product.CssClass!;
-            serviceModel.List = product.List;
+            await JS.InvokeVoidAsync("alert", $"{name} deleted from the list");
+            serviceModel.List = product!.List;
+            // Message = product!.Single!.Name + "deleted from the list";
+            // CssClass = product.CssClass!;
+            // serviceModel.List = product.List;
         }
         else
         {
@@ -101,8 +103,5 @@ else
         }
     }
 
-    private void HandleUpdate(int id)
-    {
-        navigationManager.NavigateTo($"update-product/{id}");
-    }
+    private void HandleUpdate(int id) => navigationManager.NavigateTo($"update-product/{id}");
 }
