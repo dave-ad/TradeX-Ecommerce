@@ -2,10 +2,10 @@
 
 namespace TradeXEcommerce.Shared.DTO;
 
-public class ServiceModel
+public class ServiceModel<T>
 {
-    public List<Product> ProductList { get; set; } = null;
-    public Product? SingleProduct { get; set; } = null;
+    public List<T> List { get; set; } = null;
+    public T? Single { get; set; } = default;
     public bool Success { get; set; } = true;
     public string? CssClass { get; set; } = "success";
     public string? Message { get; set; } = null;

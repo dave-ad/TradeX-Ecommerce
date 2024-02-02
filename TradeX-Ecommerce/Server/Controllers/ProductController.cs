@@ -11,25 +11,25 @@ public class ProductController : ControllerBase
     }
 
     [HttpPost("Add-Product")]
-    public async Task<ActionResult<ServiceModel>> AddProduct(Product NewProduct)
+    public async Task<ActionResult<ServiceModel<Product>>> AddProduct(Product NewProduct)
     {
         return Ok(await productRepo.AddProduct(NewProduct));
     }
 
     [HttpGet]
-    public async Task<ActionResult<ServiceModel>> GetProducts() => Ok(await productRepo.GetProducts());
+    public async Task<ActionResult<ServiceModel<Product>>> GetProducts() => Ok(await productRepo.GetProducts());
     
     [HttpGet("Get-Product/{ProductId:int}")]
-    public async Task<ActionResult<ServiceModel>> GetProduct(int ProductId) => Ok(await productRepo.GetProduct(ProductId));
+    public async Task<ActionResult<ServiceModel<Product>>> GetProduct(int ProductId) => Ok(await productRepo.GetProduct(ProductId));
 
     [HttpDelete("Delete-Product/{id:int}")]
-    public async Task<ActionResult<ServiceModel>> DeleteProduct(int id)
+    public async Task<ActionResult<ServiceModel<Product>>> DeleteProduct(int id)
     {
         return Ok(await productRepo.DeleteProduct(id));
     }
 
     [HttpPut]
-    public async Task<ActionResult<ServiceModel>> UpdateProduct(Product NewProduct)
+    public async Task<ActionResult<ServiceModel<Product>>> UpdateProduct(Product NewProduct)
     {
         return Ok(await productRepo.UpdateProduct(NewProduct));
     }

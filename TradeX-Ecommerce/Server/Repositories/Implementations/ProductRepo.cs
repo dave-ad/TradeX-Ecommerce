@@ -9,16 +9,16 @@ public class ProductRepo : IProductRepo
         this.appDbContext = appDbContext;
     }
 
-    public async Task<ServiceModel> AddProduct(Product NewProduct)
+    public async Task<ServiceModel<Product>> AddProduct(Product NewProduct)
     {
-        var Response = new ServiceModel();
+        var Response = new ServiceModel<Product>();
         if (NewProduct != null)
         {
             try
             {
                 appDbContext.Products.Add(NewProduct);
                 await appDbContext.SaveChangesAsync();
-                Response.SingleProduct = NewProduct;
+                Response.Single = NewProduct;
                 Response.Success = true;
                 Response.Message = "Product added successfully!";
                 Response.CssClass = "success";
@@ -36,24 +36,24 @@ public class ProductRepo : IProductRepo
             Response.Success = false;
             Response.Message = "Sorry new product object is empty!";
             Response.CssClass = "warning";
-            Response.SingleProduct = null!;
+            Response.Single = null!;
             return Response;
         }
     }
 
-    public async Task<ServiceModel> DeleteProduct(int ProductId)
+    public async Task<ServiceModel<Product>> DeleteProduct(int ProductId)
     {
-        var response = new ServiceModel();
+        var response = new ServiceModel<Product>();
         var product = await GetProduct(ProductId);
-        if (product.SingleProduct != null)
+        if (product.Single != null)
         {
-            appDbContext.Products.Remove(product.SingleProduct);
+            appDbContext.Products.Remove(product.Single);
             await appDbContext.SaveChangesAsync();
             response.Message = "Product Deleted!";
             response.CssClass = "success fw-bold";
-            response.SingleProduct = product.SingleProduct;
+            response.Single = product.Single;
             var products = await GetProducts();
-            response.ProductList = products.ProductList;
+            response.List = products.List;
         }
         else
         {
@@ -63,9 +63,9 @@ public class ProductRepo : IProductRepo
         return response;
     }
 
-    public async Task<ServiceModel> GetProduct(int ProductId)
+    public async Task<ServiceModel<Product>> GetProduct(int ProductId)
     {
-        var Response = new ServiceModel();
+        var Response = new ServiceModel<Product>();
         if (ProductId > 0)
         {
             try
@@ -73,7 +73,7 @@ public class ProductRepo : IProductRepo
                 var product = await appDbContext.Products.SingleOrDefaultAsync(p => p.Id == ProductId);
                 if (product != null)
                 {
-                    Response.SingleProduct = product;
+                    Response.Single = product;
                     Response.Success = true;
                     Response.Message = "Product found!";
                     Response.CssClass = "success";
@@ -84,7 +84,7 @@ public class ProductRepo : IProductRepo
                     Response.Success = false;
                     Response.Message = "Sorry product you are looking for doesn't exist!";
                     Response.CssClass = "info";
-                    Response.SingleProduct = null!;
+                    Response.Single = null!;
                     return Response;
                 }
 
@@ -101,20 +101,20 @@ public class ProductRepo : IProductRepo
             Response.Success = false;
             Response.Message = "Sorry New product object is empty!";
             Response.CssClass = "warning";
-            Response.SingleProduct = null!;
+            Response.Single = null!;
             return Response;
         }
     }
 
-    public async Task<ServiceModel> GetProducts()
+    public async Task<ServiceModel<Product>> GetProducts()
     {
-        var Response = new ServiceModel();
+        var Response = new ServiceModel<Product>();
         try
         {
             var products = await appDbContext.Products.ToListAsync();
             if (products != null)
             {
-                Response.ProductList = products;
+                Response.List = products;
                 Response.Success = true;
                 Response.Message = "Products found!";
                 Response.CssClass = "success";
@@ -125,7 +125,7 @@ public class ProductRepo : IProductRepo
                 Response.Success = false;
                 Response.Message = "Sorry No products found!";
                 Response.CssClass = "info";
-                Response.ProductList = null!;
+                Response.List = null!;
                 return Response;
             }
 
@@ -138,26 +138,26 @@ public class ProductRepo : IProductRepo
         }
     }
 
-    public async Task<ServiceModel> UpdateProduct(Product NewProduct)
+    public async Task<ServiceModel<Product>> UpdateProduct(Product NewProduct)
     {
-        var response = new ServiceModel();
+        var response = new ServiceModel<Product>();
         if(NewProduct != null)
         {
             var product = await GetProduct(NewProduct.Id);
-            if (product.SingleProduct != null)
+            if (product.Single != null)
             {
-                product.SingleProduct.Name = NewProduct.Name;
-                product.SingleProduct.OriginalPrice = NewProduct.OriginalPrice;
-                product.SingleProduct.NewPrice = NewProduct.NewPrice;
-                product.SingleProduct.Description = NewProduct.Description;
-                product.SingleProduct.Description = NewProduct.Description;
-                product.SingleProduct.Quantity = NewProduct.Quantity;
-                product.SingleProduct.Image = NewProduct.Image;
+                product.Single.Name = NewProduct.Name;
+                product.Single.OriginalPrice = NewProduct.OriginalPrice;
+                product.Single.NewPrice = NewProduct.NewPrice;
+                product.Single.Description = NewProduct.Description;
+                product.Single.Description = NewProduct.Description;
+                product.Single.Quantity = NewProduct.Quantity;
+                product.Single.Image = NewProduct.Image;
                 await appDbContext.SaveChangesAsync();
                 response.Message = "Product updated successfully";
                 response.Success = true;
                 response.CssClass = "success fw-bold";
-                response.SingleProduct = product.SingleProduct;
+                response.Single = product.Single;
             }
             else
             {
