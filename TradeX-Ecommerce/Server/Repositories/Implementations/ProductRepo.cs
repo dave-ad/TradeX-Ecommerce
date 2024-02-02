@@ -41,6 +41,28 @@ public class ProductRepo : IProductRepo
         }
     }
 
+    public async Task<ServiceModel> DeleteProduct(int ProductId)
+    {
+        var response = new ServiceModel();
+        var product = await GetProduct(ProductId);
+        if (product.SingleProduct != null)
+        {
+            appDbContext.Products.Remove(product.SingleProduct);
+            await appDbContext.SaveChangesAsync();
+            response.Message = "Product Deleted!";
+            response.CssClass = "success fw-bold";
+            response.SingleProduct = product.SingleProduct;
+            var products = await GetProducts();
+            response.ProductList = products.ProductList;
+        }
+        else
+        {
+            response.Message = product.Message;
+            response.CssClass = product.CssClass;
+        }
+        return response;
+    }
+
     public async Task<ServiceModel> GetProduct(int ProductId)
     {
         var Response = new ServiceModel();
@@ -114,5 +136,42 @@ public class ProductRepo : IProductRepo
             Response.Message = exMessage.Message.ToString();
             return Response;
         }
+    }
+
+    public async Task<ServiceModel> UpdateProduct(Product NewProduct)
+    {
+        var response = new ServiceModel();
+        if(NewProduct != null)
+        {
+            var product = await GetProduct(NewProduct.Id);
+            if (product.SingleProduct != null)
+            {
+                product.SingleProduct.Name = NewProduct.Name;
+                product.SingleProduct.OriginalPrice = NewProduct.OriginalPrice;
+                product.SingleProduct.NewPrice = NewProduct.NewPrice;
+                product.SingleProduct.Description = NewProduct.Description;
+                product.SingleProduct.Description = NewProduct.Description;
+                product.SingleProduct.Quantity = NewProduct.Quantity;
+                product.SingleProduct.Image = NewProduct.Image;
+                await appDbContext.SaveChangesAsync();
+                response.Message = "Product updated successfully";
+                response.Success = true;
+                response.CssClass = "success fw-bold";
+                response.SingleProduct = product.SingleProduct;
+            }
+            else
+            {
+                response.Message = "Sorry product not found";
+                response.Success = false;
+                response.CssClass = "danger fw-bold";
+            }
+        }
+        else
+        {
+            response.Message = "Sorry product object is empty";
+            response.Success = false;
+            response.CssClass = "danger fw-bold";
+        }
+        return response;
     }
 }
