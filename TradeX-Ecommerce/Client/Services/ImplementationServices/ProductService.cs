@@ -31,5 +31,11 @@ public class ProductService : IProductService
         var result = await httpClient.GetAsync("api/Product");
         return await result.Content.ReadFromJsonAsync<ServiceModel?>();
     }
+
+    public async Task<ServiceModel?> UpdateProduct(Product NewProduct)
+    {
+        var result = await httpClient.PutAsJsonAsync("api/Product", NewProduct);
+        return await result.Content.ReadFromJsonAsync<ServiceModel>();
+    }
 }
     

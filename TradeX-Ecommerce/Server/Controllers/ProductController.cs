@@ -27,4 +27,10 @@ public class ProductController : ControllerBase
     {
         return Ok(await productRepo.DeleteProduct(id));
     }
+
+    [HttpPut]
+    public async Task<ActionResult<ServiceModel>> UpdateProduct(Product NewProduct)
+    {
+        return Ok(await productRepo.UpdateProduct(NewProduct));
+    }
 }

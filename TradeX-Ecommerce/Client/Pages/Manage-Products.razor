@@ -1,6 +1,7 @@
 ﻿@page "/manage-products"
 @inject IProductService productService
 @inject IJSRuntime JS
+@inject NavigationManager navigationManager
 
 @if (serviceModel.ProductList != null)
 {
@@ -43,11 +44,11 @@
                         </div>
                     </a>
                     <div class="card-footer bg-white">
-                        <button class="btn btn-outline-warning btn-sm float-start">
+                        <button class="btn btn-outline-warning btn-sm float-start" @onclick="(()=> HandleUpdate(product.Id))">
                             <i class="oi oi-arrow-circle-top"></i>
                             Update
                         </button>
-                        <button class="btn btn-outline-danger btn-sm float-end" @onclick="(async ()=> await HandleDelete(product.Id, product.Name))">
+                        <button class="btn btn-outline-danger btn-sm float-end" @onclick="(async ()=> await HandleDelete(product.Id, product.Name!))">
                             <i class="oi oi-trash"></i>
                             Delete
                         </button>
@@ -98,5 +99,10 @@ else
         {
             return;
         }
+    }
+
+    private void HandleUpdate(int id)
+    {
+        navigationManager.NavigateTo($"update-product/{id}");
     }
 }
