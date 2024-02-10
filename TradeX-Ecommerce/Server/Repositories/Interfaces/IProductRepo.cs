@@ -2,9 +2,9 @@
 
 public interface IProductRepo
 {
-    public Task<ServiceModel> AddProduct(Product NewProduct);
-    public Task<ServiceModel> UpdateProduct(Product NewProduct);
-    public Task<ServiceModel> GetProducts();
-    public Task<ServiceModel> GetProduct(int ProductId);
-    public Task<ServiceModel> DeleteProduct(int ProductId);
+    public Task<ServiceModel<Product>> AddProduct(Product NewProduct);
+    public Task<ServiceModel<Product>> UpdateProduct(Product NewProduct);
+    public Task<ServiceModel<Product>> GetProducts();
+    public Task<ServiceModel<Product>> GetProduct(int ProductId);
+    public Task<ServiceModel<Product>> DeleteProduct(int ProductId);
 }

@@ -1,4 +1,4 @@
-﻿@page "/addProduct"
+﻿@page "/add-Product"
 @inject IProductService productService
 
 <div class="row">
@@ -42,7 +42,7 @@
                 <ValidationMessage For="@(()=> newProduct.Image)"></ValidationMessage>
             </div>
             <div class="form-check mt-2">
-                <button type="submit" class="btn btn-primary"> <i class="oi oi-plus"></i> Create</button>
+                <button type="submit" class="btn btn-primary float-end"> <i class="oi oi-plus"></i> Create</button>
             </div>
         </EditForm>
     </div>

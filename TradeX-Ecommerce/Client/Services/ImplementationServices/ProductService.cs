@@ -8,34 +8,34 @@ public class ProductService : IProductService
         this.httpClient = httpClient;
     }
 
-    public async Task<ServiceModel?> AddProduct(Product NewProduct)
+    public async Task<ServiceModel<Product>?> AddProduct(Product NewProduct)
     {
         var product = await httpClient.PostAsJsonAsync("api/Product/Add-Product", NewProduct);
-        return await product.Content.ReadFromJsonAsync<ServiceModel?>();
+        return await product.Content.ReadFromJsonAsync<ServiceModel<Product>?>();
     }
 
-    public async Task<ServiceModel?> DeleteProduct(int ProductId)
+    public async Task<ServiceModel<Product>?> DeleteProduct(int ProductId)
     {
-        var result = await httpClient.DeleteFromJsonAsync<ServiceModel>($"api/Product/Delete-Product/{ProductId}");
+        var result = await httpClient.DeleteFromJsonAsync<ServiceModel<Product>>($"api/Product/Delete-Product/{ProductId}");
         return result;
     }
 
-    public async Task<ServiceModel?> GetProduct(int ProductId)
+    public async Task<ServiceModel<Product>?> GetProduct(int ProductId)
     {
         var result = await httpClient.GetAsync($"api/Product/Get-Product/{ProductId}");
-        return await result.Content.ReadFromJsonAsync<ServiceModel?>();
+        return await result.Content.ReadFromJsonAsync<ServiceModel<Product>?>();
     }
 
-    public async Task<ServiceModel?> GetProducts()
+    public async Task<ServiceModel<Product>?> GetProducts()
     {
         var result = await httpClient.GetAsync("api/Product");
-        return await result.Content.ReadFromJsonAsync<ServiceModel?>();
+        return await result.Content.ReadFromJsonAsync<ServiceModel<Product>?>();
     }
 
-    public async Task<ServiceModel?> UpdateProduct(Product NewProduct)
+    public async Task<ServiceModel<Product>?> UpdateProduct(Product NewProduct)
     {
         var result = await httpClient.PutAsJsonAsync("api/Product", NewProduct);
-        return await result.Content.ReadFromJsonAsync<ServiceModel>();
+        return await result.Content.ReadFromJsonAsync<ServiceModel<Product>>();
     }
 }
     

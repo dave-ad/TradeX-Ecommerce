@@ -101,7 +101,8 @@
             var product = await productService.GetProduct(Id);
             Message = product!.Message;
             CssClass = product.CssClass;
-            if (product.SingleProduct != null)
-                newProduct = product!.SingleProduct!;        }
+            if (product.Single != null)
+                newProduct = product!.Single!;
+        }
     }
 }
