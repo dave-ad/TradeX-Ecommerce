@@ -6,3 +6,4 @@ global using TradeXEcommerce.Client.Services.ImplementationServices;
 global using TradeXEcommerce.Client.Services.InterfaceServices;
 global using TradeXEcommerce.Shared.DTO;
 global using TradeXEcommerce.Shared.Models;
+global using Blazored.LocalStorage;

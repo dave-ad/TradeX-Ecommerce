@@ -1,6 +1,4 @@
-﻿
-
-namespace TradeXEcommerce.Shared.DTO;
+﻿namespace TradeXEcommerce.Shared.DTO;
 
 public class ServiceModel<T>
 {
