@@ -82,13 +82,9 @@ else
     protected override async Task OnParametersSetAsync()
     {
         if (Url != null)
-        {
             serviceModel = await productService.GetProductByCategory(Url);
-        }
         else
-        {
             serviceModel = await productService.GetProducts();
-        }
     }
 }
 @* &#8358 ₦ &#x20A6  *@ @* Naira Symbol *@

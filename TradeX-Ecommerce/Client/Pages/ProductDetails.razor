@@ -67,8 +67,6 @@ else
     </div>
 }
 
-
-
 @code {
     [Parameter] public int Id { get; set; }
     private int Quantity = 1;
@@ -85,9 +83,7 @@ else
         Message = "";
         CssClass = "";
         if (Quantity >= 1 && Quantity <= serviceModel.Single!.Quantity)
-        {
-
-        }
+        {}
         else
         {
             Message = "Invalid quantity provided";
