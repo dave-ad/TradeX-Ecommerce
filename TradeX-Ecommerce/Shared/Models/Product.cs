@@ -17,4 +17,8 @@ public class Product
     public string? Image { get; set; }
     [Required, DataType(DataType.Date)]
     public DateTime UploadedDate { get; set; } = DateTime.Now;
+
+    // Establishing many to one relationship
+    public Category? Category { get; set; }
+    public int CategoryId { get; set; } = 2;
 }

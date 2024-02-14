@@ -33,4 +33,7 @@ public class ProductController : ControllerBase
     {
         return Ok(await productRepo.UpdateProduct(NewProduct));
     }
+
+    [HttpGet("Category/{url}")]
+    public async Task<ActionResult<ServiceModel<Product>>> GetProduct(string url) => Ok(await productRepo.GetProductByCategory(url));
 }

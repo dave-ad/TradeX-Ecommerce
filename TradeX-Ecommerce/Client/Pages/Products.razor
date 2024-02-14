@@ -1,4 +1,5 @@
 ﻿@page "/products"
+@page "/{url}"
 @inject IProductService productService
 
 @if (serviceModel.List != null)
@@ -15,7 +16,7 @@
                     <a href="productDetails/@product.Id" style="text-decoration:none;">
                         <div class="card-header text-center">
                             <img class="card-img-top" src="@product.Image" style="width:200px; height:150px" />
-                            @if (DateTime.Now < product.UploadedDate.AddDays(30))
+                            @if (DateTime.Now < product.UploadedDate.AddDays(10))
                             {
                                 <span class="badge bg-info position-absolute top-0 start-100 translate-middle badge rounded-pill">New</span>
                             }
@@ -68,6 +69,7 @@ else
 }
 
 @code {
+    [Parameter] public string Url { get; set; } = string.Empty;
     public ServiceModel<Product> serviceModel = new ServiceModel<Product>();
 
     protected override async Task OnInitializedAsync()
@@ -76,5 +78,17 @@ else
     }
 
     private async Task GetProducts() => serviceModel = await productService.GetProducts();
+
+    protected override async Task OnParametersSetAsync()
+    {
+        if (Url != null)
+        {
+            serviceModel = await productService.GetProductByCategory(Url);
+        }
+        else
+        {
+            serviceModel = await productService.GetProducts();
+        }
+    }
 }
 @* &#8358 ₦ &#x20A6  *@ @* Naira Symbol *@
