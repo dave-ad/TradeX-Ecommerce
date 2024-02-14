@@ -1,7 +1,4 @@
-﻿
-using Microsoft.JSInterop;
-
-namespace TradeXEcommerce.Client.Services.ImplementationServices;
+﻿namespace TradeXEcommerce.Client.Services.ImplementationServices;
 
 public class CartService : ICartService
 {
@@ -13,6 +10,10 @@ public class CartService : ICartService
         this.localStorageService = localStorageService;
         this.jSRuntime = jSRuntime;
     }
+
+    public int Count { get; set; }
+
+    public event Action OnChange;
 
     public async Task AddToCart(CartModel cartModel)
     {
@@ -43,5 +44,8 @@ public class CartService : ICartService
         {
             await jSRuntime.InvokeVoidAsync("alert", "Product cart cannot be empty!");
         }
+
+        Count = (await localStorageService.GetItemAsync<List<CartModel>>("MyCart")).Count();
+        OnChange?.Invoke();
     }
 }

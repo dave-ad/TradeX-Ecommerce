@@ -1,4 +1,6 @@
 ﻿@inherits LayoutComponentBase
+@implements IDisposable
+@inject ICartService cartService
 <div class="page">
     <div class="sidebar">
         <NavMenu />
@@ -7,6 +9,19 @@
     <main>
         <div class="top-row px-4">
             <a href="https://docs.microsoft.com/aspnet/" target="_blank">About</a>
+            <div class="p-3">
+                <button class="btn btn-outline-danger position-relative">
+                    <sapn class="oi oi-cart"></sapn>
+                    Cart
+                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger mt-1">
+                        @{
+                            int ServiceCount = cartService.Count > 0 ? cartService.Count : 0;
+                        }
+                        @ServiceCount
+                        <span class="visually-hidden">unread message</span>
+                    </span>
+                </button>
+            </div>
         </div>
 
         <article class="content px-4">
@@ -14,3 +29,17 @@
         </article>
     </main>
 </div>
+
+@code{
+    protected override async Task OnInitializedAsync()
+    {
+        cartService.OnChange += StateHasChanged;
+        int ServiceCountProduct = cartService.Count;
+        await base.OnInitializedAsync();
+    }
+
+    public void Dispose()
+    {
+        cartService.OnChange -= StateHasChanged;
+    }
+}
