@@ -12,7 +12,7 @@ using TradeXEcommerce.Server.Data;
 namespace TradeXEcommerce.Server.Data.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20240125040923_Initials")]
+    [Migration("20240205233059_Initials")]
     partial class Initials
     {
         /// <inheritdoc />
@@ -25,6 +25,31 @@ namespace TradeXEcommerce.Server.Data.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
+            modelBuilder.Entity("TradeXEcommerce.Shared.Models.Category", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime?>("DateCreated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Image")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Url")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Categories");
+                });
+
             modelBuilder.Entity("TradeXEcommerce.Shared.Models.Product", b =>
                 {
                     b.Property<int>("Id")
@@ -32,6 +57,9 @@ namespace TradeXEcommerce.Server.Data.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("CategoryId")
+                        .HasColumnType("int");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -61,7 +89,25 @@ namespace TradeXEcommerce.Server.Data.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("CategoryId");
+
                     b.ToTable("Products");
+                });
+
+            modelBuilder.Entity("TradeXEcommerce.Shared.Models.Product", b =>
+                {
+                    b.HasOne("TradeXEcommerce.Shared.Models.Category", "Category")
+                        .WithMany("Product")
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Category");
+                });
+
+            modelBuilder.Entity("TradeXEcommerce.Shared.Models.Category", b =>
+                {
+                    b.Navigation("Product");
                 });
 #pragma warning restore 612, 618
         }

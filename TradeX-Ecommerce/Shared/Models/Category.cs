@@ -7,4 +7,7 @@ public class Category
     public string? Url { get; set; }
     public string? Image { get; set; }
     public DateTime? DateCreated { get; set; } = DateTime.Now;
+
+    // Establishing One to Many relationship
+    public List<Product>? Product { get; set; }
 }
