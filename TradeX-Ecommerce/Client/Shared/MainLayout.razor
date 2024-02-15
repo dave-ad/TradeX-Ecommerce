@@ -1,6 +1,7 @@
 ﻿@inherits LayoutComponentBase
 @implements IDisposable
 @inject ICartService cartService
+@inject ILocalStorageService localStorageService
 <div class="page">
     <div class="sidebar">
         <NavMenu />
@@ -15,7 +16,7 @@
                     Cart
                     <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger mt-1">
                         @{
-                            int ServiceCount = cartService.Count > 0 ? cartService.Count : 0;
+                            int ServiceCount = cartService.Count > 0 ? cartService.Count : ServiceCountProduct;
                         }
                         @ServiceCount
                         <span class="visually-hidden">unread message</span>
@@ -31,11 +32,11 @@
 </div>
 
 @code{
+    int ServiceCountProduct;
     protected override async Task OnInitializedAsync()
     {
         cartService.OnChange += StateHasChanged;
-        int ServiceCountProduct = cartService.Count;
-        await base.OnInitializedAsync();
+        ServiceCountProduct = (await localStorageService.GetItemAsync<List<CartModel>>("MyCart")).Count();
     }
 
     public void Dispose()

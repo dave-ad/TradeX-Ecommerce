@@ -2,7 +2,7 @@
 
 public interface ICartService
 {
-    event Action OnChange;
+    event Action? OnChange;
     public int Count { get; set; }
     Task AddToCart(CartModel cartModel);
 }
