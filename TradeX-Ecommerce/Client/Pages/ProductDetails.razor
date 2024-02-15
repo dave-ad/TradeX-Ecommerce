@@ -85,7 +85,7 @@ else
         CssClass = "";
         if (Quantity >= 1 && Quantity <= serviceModel.Single!.Quantity)
         {
-            var cartModel = new CartModel
+            var cartModel = new MyCartModel
             {
                 ProductId = productId,
                 UserQuantity = Quantity
