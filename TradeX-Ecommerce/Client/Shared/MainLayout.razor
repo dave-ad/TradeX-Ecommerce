@@ -2,6 +2,7 @@
 @implements IDisposable
 @inject ICartService cartService
 @inject ILocalStorageService localStorageService
+@inject NavigationManager navigationManager
 <div class="page">
     <div class="sidebar">
         <NavMenu />
@@ -11,7 +12,7 @@
         <div class="top-row px-4">
             <a href="https://docs.microsoft.com/aspnet/" target="_blank">About</a>
             <div class="p-3">
-                <button class="btn btn-outline-danger position-relative">
+                <button class="btn btn-outline-danger position-relative" onclick="NavigateToCart">
                     <sapn class="oi oi-cart"></sapn>
                     Cart
                     <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger mt-1">
@@ -36,11 +37,16 @@
     protected override async Task OnInitializedAsync()
     {
         cartService.OnChange += StateHasChanged;
-        ServiceCountProduct = (await localStorageService.GetItemAsync<List<CartModel>>("MyCart")).Count();
+        ServiceCountProduct = (await localStorageService.GetItemAsync<List<MyCartModel>>("MyCart")).Count();
     }
 
     public void Dispose()
     {
         cartService.OnChange -= StateHasChanged;
+    }
+
+    private void NavigateToCart()
+    {
+        navigationManager.NavigateTo("cart");
     }
 }
