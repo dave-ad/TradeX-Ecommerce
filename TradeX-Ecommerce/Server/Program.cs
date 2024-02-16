@@ -61,7 +61,6 @@ else
 }
 
 app.UseHttpsRedirection();
-
 app.UseBlazorFrameworkFiles();
 app.UseStaticFiles();
 app.UseSwaggerUI();
@@ -69,7 +68,8 @@ app.UseSwagger();
 
 app.UseRouting();
 
-
+app.UseAuthentication();
+app.UseAuthorization();
 app.MapRazorPages();
 app.MapControllers();
 app.MapFallbackToFile("index.html");
