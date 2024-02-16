@@ -1,4 +1,6 @@
-﻿global using Microsoft.AspNetCore.Http;
+﻿global using Microsoft.AspNetCore.Identity;
+global using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+global using Microsoft.AspNetCore.Http;
 global using Microsoft.AspNetCore.ResponseCompression;
 global using Microsoft.AspNetCore.Mvc;
 global using Microsoft.EntityFrameworkCore;
@@ -7,4 +9,3 @@ global using TradeXEcommerce.Server.Repositories.Interfaces;
 global using TradeXEcommerce.Server.Repositories.Implementations;
 global using TradeXEcommerce.Shared.Models;
 global using TradeXEcommerce.Shared.DTO;
-global using Microsoft.AspNetCore.Identity;
