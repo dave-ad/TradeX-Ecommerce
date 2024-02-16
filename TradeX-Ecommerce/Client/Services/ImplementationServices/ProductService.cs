@@ -1,4 +1,4 @@
-﻿namespace TradeXEcommerce.Client.Services.ImplementationServices;
+namespace TradeXEcommerce.Client.Services.ImplementationServices;
 
 public class ProductService : IProductService
 {

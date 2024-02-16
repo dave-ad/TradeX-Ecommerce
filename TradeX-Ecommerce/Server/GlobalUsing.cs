@@ -7,3 +7,4 @@ global using TradeXEcommerce.Server.Repositories.Interfaces;
 global using TradeXEcommerce.Server.Repositories.Implementations;
 global using TradeXEcommerce.Shared.Models;
 global using TradeXEcommerce.Shared.DTO;
+global using Microsoft.AspNetCore.Identity;
