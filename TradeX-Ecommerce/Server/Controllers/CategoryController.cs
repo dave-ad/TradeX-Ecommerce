@@ -11,31 +11,31 @@ public class CategoryController : ControllerBase
         this.categoryRepo = categoryRepo;
     }
 
-    [HttpGet]
+    [HttpGet("All")]
     public async Task<ActionResult<ServiceModel<Category>>> GetCategories()
     {
         return Ok (await categoryRepo.GetCategories());
     }
 
-    [HttpGet("{id:int}")]
+    [HttpGet("{GetCategory/id:int}")]
     public async Task<ActionResult<ServiceModel<Category>>> GetCategory(int id)
     {
         return Ok (await categoryRepo.GetCategory(id));
     }
     
-    [HttpPost]
+    [HttpPost("AddCategory")]
     public async Task<ActionResult<ServiceModel<Category>>> AddCategory(Category newCategory)
     {
         return Ok (await categoryRepo.AddCategory(newCategory));
     }
     
-    [HttpDelete("{id:int}")]
+    [HttpDelete("Delete{id:int}")]
     public async Task<ActionResult<ServiceModel<Category>>> DeleteCategory(int id)
     {
         return Ok (await categoryRepo.DeleteCategory(id));
     }
     
-    [HttpPut]
+    [HttpPut("UpdateCategory")]
     public async Task<ActionResult<ServiceModel<Category>>> UpdateCategory(Category newCategory)
     {
         return Ok (await categoryRepo.UpdateCategory(newCategory));

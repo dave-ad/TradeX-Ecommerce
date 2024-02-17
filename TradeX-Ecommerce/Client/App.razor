@@ -16,11 +16,11 @@
 </Router>
 
 @code {
-    [CascadingParameter] private Task<AuthenticationState> authenticationStateTask { get; set; }
+    [CascadingParameter] private Task<AuthenticationState>? authenticationStateTask { get; set; }
 
     private async Task LogUserAuthenticationState()
     {
-        var authState = await authenticationStateTask;
+        var authState = await authenticationStateTask!;
         var user = authState.User;
 
         if (user.Identity!.IsAuthenticated)
