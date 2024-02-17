@@ -32,6 +32,14 @@ public class AuthenticationController : ControllerBase
             var errors = result.Errors.Select(x => x.Description);
             return Ok(new RegisterStatus { Successful = false, Errors = errors });
         }
+
+        await _userManager.AddToRoleAsync(newUser, "User");
+        if (newUser.Email!.ToLower().StartsWith("admin"))
+        {
+            await _userManager.AddToRoleAsync(newUser, "Admin");
+            return Ok(new RegisterStatus { Successful = true });
+
+        }
         return Ok(new RegisterStatus { Successful = true});
     }
 
@@ -41,10 +49,17 @@ public class AuthenticationController : ControllerBase
         var result = await _signInManager.PasswordSignInAsync(login.Email!, login.Password!, false, false);
         if (!result.Succeeded) return BadRequest(new LoginStatus { Successful = false, Error = "Username or password is incorrect" });
         
-        var claims = new[]
+        var user = await _signInManager.UserManager.FindByEmailAsync(login.Email!);
+        var roles = await _signInManager.UserManager.GetRolesAsync(user!);
+        var claims = new List<Claim>
         {
             new Claim(ClaimTypes.Name, login.Email!)
         };
+
+        foreach (var role in roles)
+        {
+            claims.Add(new Claim(ClaimTypes.Role, role));
+        }
 
         //var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["JwtSecurityKey"]!));
 

@@ -22,51 +22,7 @@
                 <span class="oi oi-tag" aria-hidden="true"></span> Products
             </NavLink>
         </div>
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" Match="NavLinkMatch.All">
-                <span class="oi oi-terminal" aria-hidden="true"></span>
-                <div class="btn-group">
-                    <button type="button" class="btn bg-none text-light dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                        Manage Products
-                    </button>
-                    <ul class="dropdown-menu bg-secondary">
-                        <li>
-                            <NavLink class="nav-link" href="add-Product" Match="NavLinkMatch.All">
-                                <span class="oi oi-plus p-1" aria-hidden="true"></span> Add Product
-                            </NavLink>
-                        </li>
-                        <li>
-                            <NavLink class="nav-link" href="manage-products" Match="NavLinkMatch.All">
-                                <span class="oi oi-arrow-circle-top p-1" aria-hidden="true"></span> Update/Delete
-                            </NavLink>
-                        </li>
-                    </ul>
-                </div>
-            </NavLink>
-        </div>
-
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" Match="NavLinkMatch.All">
-                <span class="oi oi-terminal" aria-hidden="true"></span>
-                <div class="btn-group">
-                    <button type="button" class="btn bg-none text-light dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                        Manage Categories
-                    </button>
-                    <ul class="dropdown-menu bg-secondary">
-                        <li>
-                            <NavLink class="nav-link" href="add-category" Match="NavLinkMatch.All">
-                                <span class="oi oi-plus p-1" aria-hidden="true"></span> Add Category
-                            </NavLink>
-                        </li>
-                        <li>
-                            <NavLink class="nav-link" href="manage-categories" Match="NavLinkMatch.All">
-                                <span class="oi oi-arrow-circle-top p-1" aria-hidden="true"></span> Update/Delete
-                            </NavLink>
-                        </li>
-                    </ul>
-                </div>
-            </NavLink>
-        </div>
+        
         <div class="text-light">Categories</div>
         <div class="nav-item px-3">
             @if (serviceModel.List != null)
@@ -87,18 +43,70 @@
                 </div>
             }
         </div>
-@*         <div class="nav-item px-3">
-            <NavLink class="nav-link" href="counter">
-                <span class="oi oi-plus" aria-hidden="true"></span> Counter
-            </NavLink>
-        </div>
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="fetchdata">
-                <span class="oi oi-list-rich" aria-hidden="true"></span> Fetch data
-            </NavLink>
-        </div> *@
+        <AuthorizeView Roles="User">
+            <div class="nav-item px-3">
+                <NavLink class="nav-link" href="">
+                    <span class="oi oi-tag" aria-hidden="true"></span> Update User Profile
+                </NavLink>
+            </div>
+            <div class="nav-item px-3">
+                <NavLink class="nav-link" href="">
+                    <span class="oi oi-tag" aria-hidden="true"></span> Make Enquires
+                </NavLink>
+            </div>
+        </AuthorizeView>
+
+        @* @attribute [Authorize(Roles = "Admin, User")] *@
+        <AuthorizeView Roles="Admin">
+            <div class="nav-item px-3">
+                <NavLink class="nav-link" Match="NavLinkMatch.All">
+                    <span class="oi oi-terminal" aria-hidden="true"></span>
+                    <div class="btn-group">
+                        <button type="button" class="btn bg-none text-light dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                            Manage Products
+                        </button>
+                        <ul class="dropdown-menu bg-secondary">
+                            <li>
+                                <NavLink class="nav-link" href="add-Product" Match="NavLinkMatch.All">
+                                    <span class="oi oi-plus p-1" aria-hidden="true"></span> Add Product
+                                </NavLink>
+                            </li>
+                            <li>
+                                <NavLink class="nav-link" href="manage-products" Match="NavLinkMatch.All">
+                                    <span class="oi oi-arrow-circle-top p-1" aria-hidden="true"></span> Update/Delete
+                                </NavLink>
+                            </li>
+                        </ul>
+                    </div>
+                </NavLink>
+            </div>
+
+            <div class="nav-item px-3">
+                <NavLink class="nav-link" Match="NavLinkMatch.All">
+                    <span class="oi oi-terminal" aria-hidden="true"></span>
+                    <div class="btn-group">
+                        <button type="button" class="btn bg-none text-light dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                            Manage Categories
+                        </button>
+                        <ul class="dropdown-menu bg-secondary">
+                            <li>
+                                <NavLink class="nav-link" href="add-category" Match="NavLinkMatch.All">
+                                    <span class="oi oi-plus p-1" aria-hidden="true"></span> Add Category
+                                </NavLink>
+                            </li>
+                            <li>
+                                <NavLink class="nav-link" href="manage-categories" Match="NavLinkMatch.All">
+                                    <span class="oi oi-arrow-circle-top p-1" aria-hidden="true"></span> Update/Delete
+                                </NavLink>
+                            </li>
+                        </ul>
+                    </div>
+                </NavLink>
+            </div>
+        </AuthorizeView>
     </nav>
 </div>
+
 
 
 @code {

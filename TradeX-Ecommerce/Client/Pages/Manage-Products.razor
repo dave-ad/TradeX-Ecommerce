@@ -73,6 +73,14 @@ else
     </div>
 }
 
+<AuthorizeView Roles="User">
+   <p>Hello, @context.User.Identity!.Name!, you are User</p>
+</AuthorizeView>
+
+<AuthorizeView Roles="Admin">
+   <p>Hello, @context.User.Identity!.Name!, you are Admin</p>
+</AuthorizeView>
+
 @code {
     string Message = string.Empty;
     string CssClass = string.Empty;
@@ -93,9 +101,6 @@ else
             var product = await productService.DeleteProduct(id);
             await JS.InvokeVoidAsync("alert", $"{name} deleted from the list");
             serviceModel.List = product!.List;
-            // Message = product!.Single!.Name + "deleted from the list";
-            // CssClass = product.CssClass!;
-            // serviceModel.List = product.List;
         }
         else
         {

@@ -29,7 +29,7 @@ public class AuthService : IAuthService
             return loginResult!;
 
         await _localStorage.SetItemAsync("autheToken", loginResult!.Token);
-        ((ApiAuthenticationStateProvider)_authenticationStateProvider).MarkUserAsAuthenticated(loginModel.Email!);
+        ((ApiAuthenticationStateProvider)_authenticationStateProvider).MarkUserAsAuthenticated(loginResult.Token!);
         _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("bearer", loginResult.Token);
 
         return loginResult;
