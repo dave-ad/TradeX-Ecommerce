@@ -1,12 +1,6 @@
-﻿using Blazored.LocalStorage;
-using Microsoft.AspNetCore.Components.Authorization;
-using System.Net.Http.Headers;
-using System.Security.Claims;
-using System.Text.Json;
+﻿namespace TradeXEcommerce.Client.Helper;
 
-namespace TradeXEcommerce.Client.Helper;
-
-public class ApiAuthenticationStateProvider : AuthenticationStateProvider
+public class ApiAuthenticationStateProvider : Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider
 {
     private readonly HttpClient _httpClient;
     private readonly ILocalStorageService _localStorage;
