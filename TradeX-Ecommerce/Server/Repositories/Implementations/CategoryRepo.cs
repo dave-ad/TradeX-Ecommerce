@@ -1,6 +1,4 @@
 ﻿
-using Azure;
-
 namespace TradeXEcommerce.Server.Repositories.Implementations;
 
 public class CategoryRepo : ICategoryRepo
@@ -26,7 +24,8 @@ public class CategoryRepo : ICategoryRepo
             }
             else
             {
-                newCategory!.Url = newCategory.Name!.ToLower().Replace(" ", "-");
+                newCategory!.Name = newCategory.Name!.ToLower();
+                newCategory!.Description = newCategory.Description!.ToLower();
                 appDbContext.Categories.Add(newCategory);
                 await appDbContext.SaveChangesAsync();
 
@@ -138,8 +137,7 @@ public class CategoryRepo : ICategoryRepo
             if (category.Single != null)
             {
                 category.Single.Name = newCategory.Name;
-                category.Single.Url = newCategory.Name!.ToLower().Replace(" ", "-");
-                category.Single.Image = newCategory.Image;
+                category.Single.Description = newCategory.Description!.ToLower();
                 await appDbContext.SaveChangesAsync();
                 response.Message = "Category updated!";
                 response.CssClass = "success fw-bold";
