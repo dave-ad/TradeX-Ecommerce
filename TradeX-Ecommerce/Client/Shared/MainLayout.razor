@@ -13,7 +13,7 @@
             <TradeXEcommerce.Client.Pages.LoginDisplay></TradeXEcommerce.Client.Pages.LoginDisplay>
             <a href="https://docs.microsoft.com/aspnet/" target="_blank">About</a>
             <div class="p-3">
-                <button class="btn btn-outline-danger position-relative" onclick="NavigateToCart">
+                <button type="button" class="btn btn-outline-danger position-relative" @onclick="NavigateToCart">
                     <sapn class="oi oi-cart"></sapn>
                     Cart
                     <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger mt-1">
@@ -33,12 +33,16 @@
     </main>
 </div>
 
-@code{
+@code {
     int ServiceCountProduct;
     protected override async Task OnInitializedAsync()
     {
+        // cartService.OnChange += StateHasChanged;
+        // ServiceCountProduct = (await localStorageService.GetItemAsync<List<MyCartModel>>("MyCart")).Count();
+
         cartService.OnChange += StateHasChanged;
-        ServiceCountProduct = (await localStorageService.GetItemAsync<List<MyCartModel>>("MyCart")).Count();
+        var myCartItems = await localStorageService.GetItemAsync<List<MyCartModel>>("MyCart");
+        ServiceCountProduct = myCartItems?.Count ?? 0;
     }
 
     public void Dispose()
@@ -48,6 +52,6 @@
 
     private void NavigateToCart()
     {
-        navigationManager.NavigateTo("cart");
+        navigationManager.NavigateTo("/cart");
     }
 }

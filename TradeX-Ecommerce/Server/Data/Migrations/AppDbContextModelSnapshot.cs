@@ -51,15 +51,15 @@ namespace TradeXEcommerce.Server.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "d6d3a996-7738-4c1a-bfe3-b4ab8b5fb502",
-                            ConcurrencyStamp = "d44ddaf6-fbbd-48bc-9e3f-a5e2d10f4608",
+                            Id = "ab8d9043-eea4-4961-a905-591681e948cd",
+                            ConcurrencyStamp = "e0e3d023-5be9-4ba9-823a-bfe5944f7ccd",
                             Name = "User",
                             NormalizedName = "USER"
                         },
                         new
                         {
-                            Id = "8bba161f-bcc3-47cf-84b6-80b11eb48eff",
-                            ConcurrencyStamp = "07dcbc29-f203-4319-8065-a4d4ad5c8301",
+                            Id = "e7905234-cdec-43c2-b9bb-de095378754e",
+                            ConcurrencyStamp = "fbd0a443-ba6d-47ff-aaeb-4e55a37aa255",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         });
@@ -251,13 +251,10 @@ namespace TradeXEcommerce.Server.Data.Migrations
                     b.Property<DateTime?>("DateCreated")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("Image")
+                    b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Url")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
