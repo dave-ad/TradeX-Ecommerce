@@ -1,8 +1,4 @@
 
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.IdentityModel.Tokens;
-using System.Text;
-
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -13,10 +9,13 @@ builder.Services.AddScoped<IProductRepo, ProductRepo>();
 builder.Services.AddScoped<ICategoryRepo, CategoryRepo>();
 builder.Services.AddSwaggerGen();
 
-//builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
-//    .AddEntityFrameworkStores<AppDbContext>();
+builder.Services.AddDbContext<AppDbContext>(Options =>
+{
+    Options.UseSqlServer(builder.Configuration.GetConnectionString("DevConnection"));
+});
 
-builder.Services.AddDefaultIdentity<IdentityUser>()
+builder.Services.AddDefaultIdentity<IdentityUser>(options => 
+    options.SignIn.RequireConfirmedAccount = true)
     .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<AppDbContext>();
 
@@ -40,11 +39,6 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
         };
     });
 
-
-builder.Services.AddDbContext<AppDbContext>(Options =>
-    {
-        Options.UseSqlServer(builder.Configuration.GetConnectionString("DevConnection"));
-    });
 
 var app = builder.Build();
 
