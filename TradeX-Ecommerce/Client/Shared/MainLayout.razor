@@ -4,8 +4,8 @@
 @inject ILocalStorageService localStorageService
 @inject NavigationManager navigationManager
 <div class="page">
-    <div class="sidebar">
-        <NavMenu />
+    <div class="sidebar" style="@IconMenuCssClass">
+        <NavMenu ShowIconMenu="ToggleIconMenu" />
     </div>
 
     <main>
@@ -34,7 +34,16 @@
 </div>
 
 @code {
+
+    private bool _iconMenuActive { get; set; }
+    private string? IconMenuCssClass => _iconMenuActive ? "width: 80px;" : null;
     int ServiceCountProduct;
+
+    protected void ToggleIconMenu(bool iconMenuActive)
+    {
+        _iconMenuActive = iconMenuActive;
+    }
+
     protected override async Task OnInitializedAsync()
     {
         // cartService.OnChange += StateHasChanged;
