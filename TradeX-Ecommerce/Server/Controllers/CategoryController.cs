@@ -1,4 +1,6 @@
-﻿namespace TradeXEcommerce.Server.Controllers;
+﻿using Microsoft.AspNetCore.Authorization;
+
+namespace TradeXEcommerce.Server.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
@@ -17,24 +19,28 @@ public class CategoryController : ControllerBase
         return Ok (await categoryRepo.GetCategories());
     }
 
-    [HttpGet("{GetCategory/id:int}")]
+    [Authorize(Roles = "Admin")]
+    [HttpGet("GetCategory/{id:int}")]
     public async Task<ActionResult<ServiceModel<Category>>> GetCategory(int id)
     {
         return Ok (await categoryRepo.GetCategory(id));
     }
-    
+
+    [Authorize(Roles = "Admin")]
     [HttpPost("AddCategory")]
     public async Task<ActionResult<ServiceModel<Category>>> AddCategory(Category newCategory)
     {
         return Ok (await categoryRepo.AddCategory(newCategory));
     }
-    
+
+    [Authorize(Roles = "Admin")]
     [HttpDelete("Delete{id:int}")]
     public async Task<ActionResult<ServiceModel<Category>>> DeleteCategory(int id)
     {
         return Ok (await categoryRepo.DeleteCategory(id));
     }
-    
+
+    [Authorize(Roles = "Admin")]
     [HttpPut("UpdateCategory")]
     public async Task<ActionResult<ServiceModel<Category>>> UpdateCategory(Category newCategory)
     {
