@@ -27,21 +27,22 @@ public class CategoryController : ControllerBase
     }
 
     [Authorize(Roles = "Admin")]
-    [HttpPost("AddCategory")]
+    [HttpPost("Add")]
     public async Task<ActionResult<ServiceModel<Category>>> AddCategory(Category newCategory)
     {
         return Ok (await categoryRepo.AddCategory(newCategory));
     }
-
+    
     [Authorize(Roles = "Admin")]
     [HttpDelete("Delete{id:int}")]
+
     public async Task<ActionResult<ServiceModel<Category>>> DeleteCategory(int id)
     {
         return Ok (await categoryRepo.DeleteCategory(id));
     }
 
     [Authorize(Roles = "Admin")]
-    [HttpPut("UpdateCategory")]
+    [HttpPut("Update")]
     public async Task<ActionResult<ServiceModel<Category>>> UpdateCategory(Category newCategory)
     {
         return Ok (await categoryRepo.UpdateCategory(newCategory));

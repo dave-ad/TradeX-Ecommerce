@@ -9,16 +9,16 @@ public class ProductRepo : IProductRepo
         this.appDbContext = appDbContext;
     }
 
-    public async Task<ServiceModel<Product>> AddProduct(Product NewProduct)
+    public async Task<ServiceModel<Product>> AddProduct(Product newProduct)
     {
         var Response = new ServiceModel<Product>();
-        if (NewProduct != null)
+        if (newProduct != null)
         {
             try
             {
-                appDbContext.Products.Add(NewProduct);
+                appDbContext.Products.Add(newProduct);
                 await appDbContext.SaveChangesAsync();
-                Response.Single = NewProduct;
+                Response.Single = newProduct;
                 Response.Success = true;
                 Response.Message = "Product added successfully!";
                 Response.CssClass = "success";
@@ -34,7 +34,7 @@ public class ProductRepo : IProductRepo
         else
         {
             Response.Success = false;
-            Response.Message = "Sorry new product object is empty!";
+            Response.Message = "Sorry, new product object is empty!";
             Response.CssClass = "warning";
             Response.Single = null!;
             return Response;
@@ -106,15 +106,15 @@ public class ProductRepo : IProductRepo
         }
     }
 
-    public async Task<ServiceModel<Product>> GetProductByCategory(string url)
+    public async Task<ServiceModel<Product>> GetProductByCategory(string name)
     {
         var Response = new ServiceModel<Product>();
-        if (url != null)
+        if (name != null)
         {
             try
             {
                 var product = await appDbContext.Products
-                    .Where(p => p.Category!.Url == url.ToLower().Replace(" .", "-")).ToListAsync();
+                    .Where(p => p.Category!.Name == name.ToLower()).ToListAsync();
                 if (product != null)
                 {
                     Response.List = product;
@@ -185,7 +185,7 @@ public class ProductRepo : IProductRepo
     public async Task<ServiceModel<Product>> UpdateProduct(Product NewProduct)
     {
         var response = new ServiceModel<Product>();
-        if(NewProduct != null)
+        if (NewProduct != null)
         {
             var product = await GetProduct(NewProduct.Id);
             if (product.Single != null)

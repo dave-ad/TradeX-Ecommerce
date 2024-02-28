@@ -1,4 +1,3 @@
-
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
@@ -25,7 +24,16 @@ builder.Services.AddDbContext<AppDbContext>(Options =>
     Options.UseSqlServer(builder.Configuration.GetConnectionString("DevConnection") ??
         throw new InvalidOperationException("Connection string is not found"));
 });
+=======
+builder.Services.AddDbContext<AppDbContext>(Options =>
+{
+    Options.UseSqlServer(builder.Configuration.GetConnectionString("DevConnection"));
+});
 
+builder.Services.AddDefaultIdentity<IdentityUser>(options => 
+    options.SignIn.RequireConfirmedAccount = true)
+    .AddRoles<IdentityRole>()
+    .AddEntityFrameworkStores<AppDbContext>();
 // Add Identity & JWT Authentication
 // Identity
 builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
@@ -67,7 +75,6 @@ builder.Services.AddSwaggerGen(options =>
         Type = SecuritySchemeType.ApiKey
     });
 });
-
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
