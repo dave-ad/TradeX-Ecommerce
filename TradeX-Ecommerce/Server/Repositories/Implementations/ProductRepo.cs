@@ -114,7 +114,7 @@ public class ProductRepo : IProductRepo
             try
             {
                 var product = await appDbContext.Products
-                    .Where(p => p.Category!.Url == url.ToLower().Replace(" .", "-")).ToListAsync();
+                    .Where(p => p.Category!.Name == url.ToLower().Replace(" .", "-")).ToListAsync();
                 if (product != null)
                 {
                     Response.List = product;

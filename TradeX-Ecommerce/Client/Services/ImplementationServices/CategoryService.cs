@@ -11,7 +11,7 @@ public class CategoryService : ICategoryService
 
     public async Task<ServiceModel<Category>> AddCategory(Category newCategory)
     {
-        var response = await httpClient.PostAsJsonAsync("api/Category", newCategory);
+        var response = await httpClient.PostAsJsonAsync("api/Category/Add", newCategory);
         var result = await response.Content.ReadFromJsonAsync<ServiceModel<Category>>();
         return result!;
     }
@@ -24,7 +24,7 @@ public class CategoryService : ICategoryService
 
     public async Task<ServiceModel<Category>> GetCategories()
     {
-        var response = await httpClient.GetAsync("api/Category");
+        var response = await httpClient.GetAsync("api/Category/All");
         var result = await response.Content.ReadFromJsonAsync<ServiceModel<Category>>();
         return result!;
     }
@@ -38,7 +38,7 @@ public class CategoryService : ICategoryService
 
     public async Task<ServiceModel<Category>> UpdateCategory(Category newCategory)
     {
-        var response = await httpClient.PutAsJsonAsync("api/Category", newCategory);
+        var response = await httpClient.PutAsJsonAsync("api/Category/Update", newCategory);
         var result = await response.Content.ReadFromJsonAsync<ServiceModel<Category>>();
         return result!;
     }

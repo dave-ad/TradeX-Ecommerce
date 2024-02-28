@@ -18,7 +18,12 @@
                         <InputText id="title" @bind-Value="newCategory.Name" class="form-control"></InputText>
                         <ValidationMessage For="@(()=> newCategory.Name)"></ValidationMessage>
                     </div>
-                    <div class="row">
+                    <div class="form-group mt-2">
+                        <label class="form-label" for="description">Description</label>
+                        <InputTextArea id="description" @bind-Value="newCategory.Description" class="form-control"></InputTextArea>
+                        <ValidationMessage For="@(()=> newCategory.Description)"></ValidationMessage>
+                    </div>
+@*                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group mt-2">
                                 <img src="@newCategory.Image" class="card-image-top" style="width:150px; height:100px" />
@@ -31,7 +36,7 @@
                                 <ValidationMessage For="@(()=> newCategory.Image)"></ValidationMessage>
                             </div>
                         </div>
-                    </div>
+                    </div> *@
                     <div class="form-group mt-2">
                         <button type="submit" class="btn btn-primary float-end"> <i class="oi oi-arrow-circle-top"></i> Update</button>
                     </div>
@@ -66,20 +71,20 @@
             newCategory = category.Single;
     }
 
-    async Task OnFileChange(InputFileChangeEventArgs e)
-    {
-        FileInfo fileInfo = new FileInfo(e.File.Name);
-        if (fileInfo.Extension.ToLower().Contains(".jpg"))
-        {
-            uploadMessage = "";
-            var format = "image/jpg";
-            var resizeImage = await e.File.RequestImageFileAsync(format, 300, 300);
-            var buffer = new byte[resizeImage.Size];
-            await resizeImage.OpenReadStream().ReadAsync(buffer);
-            var imageData = $"data:{format};base64,{Convert.ToBase64String(buffer)}";
-            newCategory.Image = imageData;
+    // async Task OnFileChange(InputFileChangeEventArgs e)
+    // {
+    //     FileInfo fileInfo = new FileInfo(e.File.Name);
+    //     if (fileInfo.Extension.ToLower().Contains(".jpg"))
+    //     {
+    //         uploadMessage = "";
+    //         var format = "image/jpg";
+    //         var resizeImage = await e.File.RequestImageFileAsync(format, 300, 300);
+    //         var buffer = new byte[resizeImage.Size];
+    //         await resizeImage.OpenReadStream().ReadAsync(buffer);
+    //         var imageData = $"data:{format};base64,{Convert.ToBase64String(buffer)}";
+    //         newCategory.Image = imageData;
 
-        }
-        else { uploadMessage = "Invalid file selected (only JPG file)"; }
-    }
+    //     }
+    //     else { uploadMessage = "Invalid file selected (only JPG file)"; }
+    // }
 }

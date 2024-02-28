@@ -23,6 +23,11 @@
             </NavLink>
         </div>
         <div class="nav-item px-3">
+            <NavLink class="nav-link" href="manage-category">
+                <span class="oi oi-tag" aria-hidden="true"></span> Manage Category
+            </NavLink>
+        </div>
+        <div class="nav-item px-3">
             <NavLink class="nav-link" Match="NavLinkMatch.All">
                 <span class="oi oi-terminal" aria-hidden="true"></span>
                 <div class="btn-group">
@@ -73,7 +78,7 @@
             {
                 foreach (var cat in serviceModel.List)
                 {
-                    <NavLink class="nav-link" href="@cat.Url" Match="NavLinkMatch.All">
+                    <NavLink class="nav-link" href="@cat.Name" Match="NavLinkMatch.All">
                         <span class="oi oi-arrow-circle-right" aria-hidden="true"></span> @cat.Name
                     </NavLink>
                 }

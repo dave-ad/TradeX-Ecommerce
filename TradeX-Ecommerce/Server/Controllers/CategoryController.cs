@@ -11,7 +11,7 @@ public class CategoryController : ControllerBase
         this.categoryRepo = categoryRepo;
     }
 
-    [HttpGet]
+    [HttpGet("All")]
     public async Task<ActionResult<ServiceModel<Category>>> GetCategories()
     {
         return Ok (await categoryRepo.GetCategories());
@@ -23,7 +23,7 @@ public class CategoryController : ControllerBase
         return Ok (await categoryRepo.GetCategory(id));
     }
     
-    [HttpPost]
+    [HttpPost("Add")]
     public async Task<ActionResult<ServiceModel<Category>>> AddCategory(Category newCategory)
     {
         return Ok (await categoryRepo.AddCategory(newCategory));
@@ -35,7 +35,7 @@ public class CategoryController : ControllerBase
         return Ok (await categoryRepo.DeleteCategory(id));
     }
     
-    [HttpPut]
+    [HttpPut("Update")]
     public async Task<ActionResult<ServiceModel<Category>>> UpdateCategory(Category newCategory)
     {
         return Ok (await categoryRepo.UpdateCategory(newCategory));
