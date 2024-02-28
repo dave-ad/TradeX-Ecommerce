@@ -47,21 +47,6 @@ namespace TradeXEcommerce.Server.Data.Migrations
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
                     b.ToTable("AspNetRoles", (string)null);
-                    b.HasData(
-                        new
-                        {
-                            Id = "ab8d9043-eea4-4961-a905-591681e948cd",
-                            ConcurrencyStamp = "e0e3d023-5be9-4ba9-823a-bfe5944f7ccd",
-                            Name = "User",
-                            NormalizedName = "USER"
-                        },
-                        new
-                        {
-                            Id = "e7905234-cdec-43c2-b9bb-de095378754e",
-                            ConcurrencyStamp = "fbd0a443-ba6d-47ff-aaeb-4e55a37aa255",
-                            Name = "Admin",
-                            NormalizedName = "ADMIN"
-                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
