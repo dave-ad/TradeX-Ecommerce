@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using TradeXEcommerce.Server.Repositories.Implementations;
 
 namespace TradeXEcommerce.Server.Controllers;
 
@@ -7,16 +7,19 @@ namespace TradeXEcommerce.Server.Controllers;
 public class ProductController : ControllerBase
 {
     private readonly IProductRepo productRepo;
-    public ProductController(IProductRepo productRepo)
+    private readonly ICategoryRepo categoryRepo;
+    public ProductController(IProductRepo productRepo, ICategoryRepo categoryRepo)
     {
         this.productRepo = productRepo;
+        this.categoryRepo = categoryRepo;
     }
 
-    [Authorize(Roles = "Admin")]
+    //[Authorize(Roles = "Admin")]
     [HttpPost("AddProduct")]
     public async Task<ActionResult<ServiceModel<Product>>> AddProduct(Product NewProduct)
     {
-        return Ok(await productRepo.AddProduct(NewProduct));
+        string categoryName = "";
+        return Ok(await productRepo.AddProduct(NewProduct, categoryName));
     }
 
     [HttpGet]

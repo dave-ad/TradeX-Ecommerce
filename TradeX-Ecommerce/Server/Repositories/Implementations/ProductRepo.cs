@@ -1,4 +1,6 @@
-﻿namespace TradeXEcommerce.Server.Repositories.Implementations;
+﻿using Azure;
+
+namespace TradeXEcommerce.Server.Repositories.Implementations;
 
 public class ProductRepo : IProductRepo
 {
@@ -9,13 +11,23 @@ public class ProductRepo : IProductRepo
         this.appDbContext = appDbContext;
     }
 
-    public async Task<ServiceModel<Product>> AddProduct(Product newProduct)
+    public async Task<ServiceModel<Product>> AddProduct(Product newProduct, string categoryName)
     {
         var Response = new ServiceModel<Product>();
         if (newProduct != null)
         {
             try
             {
+                var category = await appDbContext.Categories.FirstOrDefaultAsync(c => c.Name == categoryName);
+                if (category == null)
+                {
+                    Response.Success = false;
+                    Response.Message = "Category not found";
+                    Response.CssClass = "warning";
+                    return Response;
+                }
+
+                newProduct.Category = category;
                 appDbContext.Products.Add(newProduct);
                 await appDbContext.SaveChangesAsync();
                 Response.Single = newProduct;
@@ -26,6 +38,7 @@ public class ProductRepo : IProductRepo
             }
             catch (Exception exMessage)
             {
+                Response.Success = false;
                 Response.CssClass = "danger";
                 Response.Message = exMessage.Message.ToString();
                 return Response;

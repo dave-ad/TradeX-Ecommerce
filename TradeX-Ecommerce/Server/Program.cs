@@ -1,8 +1,3 @@
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.IdentityModel.Tokens;
-using Microsoft.OpenApi.Models;
-using System.Text;
-using TradeXEcommerce.Shared.Contracts;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -55,6 +50,14 @@ builder.Services.AddAuthentication(options =>
     };
 });
 
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("Admin", policy =>
+    {
+        policy.RequireAuthenticatedUser();
+        policy.RequireRole("Admin");
+    });
+});
 
 // Add autentication to Swagger UI
 builder.Services.AddSwaggerGen(options =>
@@ -93,7 +96,7 @@ app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
 app.MapRazorPages();
-app.MapControllers();
+app.MapControllers().RequireAuthorization();
 app.MapFallbackToFile("index.html");
 //app.MapFallbackToFile("/products.html");
 
