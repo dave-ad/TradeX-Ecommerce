@@ -1,5 +1,6 @@
 ﻿@page "/add-Product"
 @inject IProductService productService
+@inject ICategoryService categoryService
 
 <div class="row">
     <div class="col-md-6 offset-3">
@@ -37,6 +38,17 @@
                 <ValidationMessage For="@(()=> newProduct.Quantity)"></ValidationMessage>
             </div>
             <div class="form-group mt-2">
+                <label class="form-label" for="category">Category</label>
+                <select id="category" @bind="newProduct.CategoryId" class="form-control">
+                    <option value="">-- Select Category --</option>
+                    @foreach (var category in categories)
+                    {
+                        <option value="@category.Id">@category.Name</option>
+                    }
+                </select>
+                <ValidationMessage For="@(()=> newProduct.CategoryId)"></ValidationMessage>
+            </div>
+            <div class="form-group mt-2">
                 <label class="form-label" for="image">Image</label>&nbsp; <span class="text-danger fw-bold">@uploadMessage</span>
                 <InputFile id="image" OnChange="OnFileChange" class="form-control"></InputFile>
                 <ValidationMessage For="@(()=> newProduct.Image)"></ValidationMessage>
@@ -54,12 +66,23 @@
     private string? uploadMessage;
     private string? Message = string.Empty;
     private string? CssClass = string.Empty;
+    private List<Category> categories = new List<Category>();
+
+    protected override async Task OnInitializedAsync()
+    {
+        var response = await categoryService.GetCategories();
+        if (response.Success)
+        {
+            categories = response.List;
+        }
+    }
+    
     async Task HandleAddProduct()
     {
         Message = "";
         var response = await productService.AddProduct(newProduct);
-            Message = response!.Message;
-            CssClass = response!.CssClass; 
+        Message = response!.Message;
+        CssClass = response!.CssClass; 
     }
 
 

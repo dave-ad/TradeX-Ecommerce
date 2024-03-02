@@ -26,9 +26,9 @@ public class ProductService : IProductService
         return await result.Content.ReadFromJsonAsync<ServiceModel<Product>?>();
     }
 
-    public async Task<ServiceModel<Product>?> GetProductByCategory(string url)
+    public async Task<ServiceModel<Product>?> GetProductByCategory(string name)
     {
-        var result = await httpClient.GetAsync($"api/Product/Category/{url}");
+        var result = await httpClient.GetAsync($"api/Product/Category/{name}");
         return await result.Content.ReadFromJsonAsync<ServiceModel<Product>?>();
     }
 

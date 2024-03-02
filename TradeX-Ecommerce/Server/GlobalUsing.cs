@@ -1,4 +1,5 @@
 ﻿global using Microsoft.AspNetCore.Authentication.JwtBearer;
+global using Microsoft.AspNetCore.Authorization;
 global using Microsoft.AspNetCore.Identity;
 global using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 global using Microsoft.AspNetCore.Http;
@@ -7,9 +8,14 @@ global using Microsoft.AspNetCore.Mvc;
 global using Microsoft.EntityFrameworkCore;
 global using Microsoft.EntityFrameworkCore.Migrations;
 global using Microsoft.IdentityModel.Tokens;
+global using Microsoft.OpenApi.Models;
+global using System.ComponentModel.DataAnnotations.Schema;
+global using System.ComponentModel.DataAnnotations;
 global using System.Text;
 global using TradeXEcommerce.Server.Data;
 global using TradeXEcommerce.Server.Repositories.Interfaces;
 global using TradeXEcommerce.Server.Repositories.Implementations;
-global using TradeXEcommerce.Shared.Models;
+global using TradeXEcommerce.Shared.Contracts;
 global using TradeXEcommerce.Shared.DTO;
+global using TradeXEcommerce.Shared.Models;
+

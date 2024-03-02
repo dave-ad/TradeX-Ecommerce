@@ -1,7 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
-using System.ComponentModel.DataAnnotations;
-
-namespace TradeXEcommerce.Server.Data;
+﻿namespace TradeXEcommerce.Server.Data;
 public class ApplicationUser : IdentityUser
 {
     [Key]
