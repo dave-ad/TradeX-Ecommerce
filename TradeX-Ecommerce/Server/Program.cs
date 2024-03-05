@@ -8,6 +8,8 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddScoped<IProductRepo, ProductRepo>();
 builder.Services.AddScoped<ICategoryRepo, CategoryRepo>();
 builder.Services.AddScoped<IUserAccount, AccountRepo>();
+builder.Services.AddScoped<UserManager<ApplicationUser>>();
+builder.Services.AddScoped<RoleManager<IdentityRole>>();
 builder.Services.AddSwaggerGen();
 
 //builder.Services.AddDefaultIdentity<IdentityUser>()
@@ -27,9 +29,6 @@ builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
     .AddSignInManager()
     .AddRoles<IdentityRole>();
     //.AddDefaultTokenProviders();
-
-builder.Services.AddScoped<UserManager<ApplicationUser>>();
-builder.Services.AddScoped<RoleManager<IdentityRole>>();
 
 // JWT
 builder.Services.AddAuthentication(options =>
