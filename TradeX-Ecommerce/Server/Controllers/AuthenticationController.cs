@@ -13,7 +13,7 @@ public class AuthenticationController : ControllerBase
     //    _signInManager = signInManager;
     //    _userAccount = userAccount;
     //}
-    
+
     public AuthenticationController(IUserAccount userAccount)
     {
         _userAccount = userAccount;
@@ -89,7 +89,7 @@ public class AuthenticationController : ControllerBase
     //    return Ok(new LoginStatus { Successful = true, Token = new JwtSecurityTokenHandler().WriteToken(token) });
     //}
     //}
-    
+
     [HttpPost("Login")]
     public async Task<IActionResult> Login(LoginDTO loginDTO)
     {
