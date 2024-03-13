@@ -7,14 +7,11 @@ builder.Services.AddRazorPages();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddScoped<IProductRepo, ProductRepo>();
 builder.Services.AddScoped<ICategoryRepo, CategoryRepo>();
-builder.Services.AddScoped<IUserAccount, AccountRepo>();
-builder.Services.AddScoped<UserManager<ApplicationUser>>();
-builder.Services.AddScoped<RoleManager<IdentityRole>>();
+//builder.Services.AddScoped<IUserAccount, AccountRepo>();
+//builder.Services.AddScoped<UserManager<ApplicationUser>>();
+//builder.Services.AddScoped<RoleManager<IdentityRole>>();
 builder.Services.AddSwaggerGen();
 
-//builder.Services.AddDefaultIdentity<IdentityUser>()
-//    .AddRoles<IdentityRole>()
-//    .AddEntityFrameworkStores<AppDbContext>();
 
 builder.Services.AddDbContext<AppDbContext>(Options =>
 {
@@ -28,26 +25,26 @@ builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
     .AddEntityFrameworkStores<AppDbContext>()
     .AddSignInManager()
     .AddRoles<IdentityRole>();
-    //.AddDefaultTokenProviders();
+//.AddDefaultTokenProviders();
 
-// JWT
-builder.Services.AddAuthentication(options =>
-{
-    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-}).AddJwtBearer(options =>
-{
-    options.TokenValidationParameters = new TokenValidationParameters
-    {
-        ValidateIssuer = true,
-        ValidateAudience = true,
-        ValidateIssuerSigningKey = true,
-        ValidateLifetime = true,
-        ValidIssuer = builder.Configuration["JwtIssuer"],
-        ValidAudience = builder.Configuration["JwtAudience"],
-        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["JwtSecurityKey"]!))
-    };
-});
+//// JWT
+//builder.Services.AddAuthentication(options =>
+//{
+//    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+//    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+//}).AddJwtBearer(options =>
+//{
+//    options.TokenValidationParameters = new TokenValidationParameters
+//    {
+//        ValidateIssuer = true,
+//        ValidateAudience = true,
+//        ValidateIssuerSigningKey = true,
+//        ValidateLifetime = true,
+//        ValidIssuer = builder.Configuration["JwtIssuer"],
+//        ValidAudience = builder.Configuration["JwtAudience"],
+//        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["JwtSecurityKey"]!))
+//    };
+//});
 
 builder.Services.AddAuthorization(options =>
 {
@@ -58,16 +55,17 @@ builder.Services.AddAuthorization(options =>
     });
 });
 
-// Add autentication to Swagger UI
-builder.Services.AddSwaggerGen(options =>
-{
-    options.AddSecurityDefinition("oauth2", new OpenApiSecurityScheme
-    {
-        In = ParameterLocation.Header,
-        Name = "Authorization",
-        Type = SecuritySchemeType.ApiKey
-    });
-});
+//// Add autentication to Swagger UI
+//builder.Services.AddSwaggerGen(options =>
+//{
+//    options.AddSecurityDefinition("oauth2", new OpenApiSecurityScheme
+//    {
+//        In = ParameterLocation.Header,
+//        Name = "Authorization",
+//        Type = SecuritySchemeType.ApiKey
+//    });
+//});
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -87,15 +85,14 @@ else
 app.UseHttpsRedirection();
 app.UseBlazorFrameworkFiles();
 app.UseStaticFiles();
-//app.UseSwagger();
-//app.UseSwaggerUI();
 
 app.UseRouting();
 
-app.UseAuthentication();
-app.UseAuthorization();
+//app.UseAuthentication();
+//app.UseAuthorization();
 app.MapRazorPages();
-app.MapControllers().RequireAuthorization();
+//app.MapControllers().RequireAuthorization();
+app.MapControllers();
 app.MapFallbackToFile("index.html");
 //app.MapFallbackToFile("/products.html");
 
