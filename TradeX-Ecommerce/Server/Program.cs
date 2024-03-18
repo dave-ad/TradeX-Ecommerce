@@ -16,7 +16,8 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<AppDbContext>(Options =>
 {
     Options.UseSqlServer(builder.Configuration.GetConnectionString("DevConnection") ??
-        throw new InvalidOperationException("Connection string is not found"));
+        throw new InvalidOperationException("Connection string is not found"))
+        .EnableSensitiveDataLogging();
 });
 
 // Add Identity & JWT Authentication
@@ -85,7 +86,8 @@ else
 app.UseHttpsRedirection();
 app.UseBlazorFrameworkFiles();
 app.UseStaticFiles();
-
+app.UseSwagger();
+app.UseSwaggerUI();
 app.UseRouting();
 
 //app.UseAuthentication();

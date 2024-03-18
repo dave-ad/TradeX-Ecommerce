@@ -25,8 +25,7 @@ public class Product
     [Required, DataType(DataType.Date)]
     public DateTime UploadedDate { get; set; } = DateTime.Now;
 
-    // Establishing many to one relationship
+    //Relationship : many to one
     public Category? Category { get; set; }
-    public int CategoryId { get; set; }
-
+    public int CategoryId { get; set; } = 1;
 }
