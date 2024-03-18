@@ -19,12 +19,12 @@
             </div>
             <div class="form-group mt-2">
                 <label class="form-label" for="url">Original Price</label>
-                <input type="text" id="price" min="0.5"  @bind="newProduct.OriginalPrice" class="form-control"></input>
+                <input type="text" id="price" min="0.5"  @bind="newProduct.OriginalPrice" class="form-control" />
                 <ValidationMessage For="@(()=> newProduct.OriginalPrice)"></ValidationMessage>
             </div>
             <div class="form-group mt-2">
                 <label class="form-label" for="url">New Price</label>
-                <input type="text" id="price" min="0.5" @bind="newProduct.NewPrice" class="form-control"></input>
+                <input type="text" id="price" min="0.5" @bind="newProduct.NewPrice" class="form-control" />
                 <ValidationMessage For="@(()=> newProduct.NewPrice)"></ValidationMessage>
             </div>
             <div class="form-group mt-2">
@@ -34,10 +34,10 @@
             </div>
             <div class="form-group mt-2">
                 <label class="form-label" for="description">Quantity</label>
-                <input type="number" id="description" min="1" @bind="newProduct.Quantity"  class="form-control"></input>
+                <input type="number" id="description" min="1" @bind="newProduct.Quantity"  class="form-control" />
                 <ValidationMessage For="@(()=> newProduct.Quantity)"></ValidationMessage>
             </div>
-            <div class="form-group mt-2">
+@*             <div class="form-group mt-2">
                 <label class="form-label" for="category">Category</label>
                 <select id="category" @bind="newProduct.CategoryId" class="form-control">
                     <option value="">-- Select Category --</option>
@@ -47,7 +47,7 @@
                     }
                 </select>
                 <ValidationMessage For="@(()=> newProduct.CategoryId)"></ValidationMessage>
-            </div>
+            </div> *@
             <div class="form-group mt-2">
                 <label class="form-label" for="image">Image</label>&nbsp; <span class="text-danger fw-bold">@uploadMessage</span>
                 <InputFile id="image" OnChange="OnFileChange" class="form-control"></InputFile>

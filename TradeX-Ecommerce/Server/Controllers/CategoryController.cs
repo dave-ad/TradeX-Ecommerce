@@ -11,38 +11,22 @@ public class CategoryController : ControllerBase
         this.categoryRepo = categoryRepo;
     }
 
-    [HttpGet("All")]
-    public async Task<ActionResult<ServiceModel<Category>>> GetCategories()
-    {
-        return Ok (await categoryRepo.GetCategories());
-    }
-
-    //[Authorize(Policy = "Admin")]
-    [HttpGet("GetCategory/{id:int}")]
-    public async Task<ActionResult<ServiceModel<Category>>> GetCategory(int id)
-    {
-        return Ok (await categoryRepo.GetCategory(id));
-    }
-
     //[Authorize(Roles = "Admin")]
     [HttpPost("Add")]
-    public async Task<ActionResult<ServiceModel<Category>>> AddCategory(Category newCategory)
-    {
-        return Ok (await categoryRepo.AddCategory(newCategory));
-    }
+    public async Task<ActionResult<ServiceModel<Category>>> AddCategory(Category newCategory) => Ok(await categoryRepo.AddCategory(newCategory));
 
     //[Authorize(Roles = "Admin")]
     [HttpDelete("Delete{id:int}")]
+    public async Task<ActionResult<ServiceModel<Category>>> DeleteCategory(int id) => Ok(await categoryRepo.DeleteCategory(id));
 
-    public async Task<ActionResult<ServiceModel<Category>>> DeleteCategory(int id)
-    {
-        return Ok (await categoryRepo.DeleteCategory(id));
-    }
+    [HttpGet("All")]
+    public async Task<ActionResult<ServiceModel<Category>>> GetCategories() => Ok(await categoryRepo.GetCategories());
+
+    //[Authorize(Policy = "Admin")]
+    [HttpGet("GetCategory/{id:int}")]
+    public async Task<ActionResult<ServiceModel<Category>>> GetCategory(int id) => Ok(await categoryRepo.GetCategory(id));
 
     //[Authorize(Roles = "Admin")]
     [HttpPut("Update")]
-    public async Task<ActionResult<ServiceModel<Category>>> UpdateCategory(Category newCategory)
-    {
-        return Ok (await categoryRepo.UpdateCategory(newCategory));
-    }
+    public async Task<ActionResult<ServiceModel<Category>>> UpdateCategory(Category newCategory) => Ok(await categoryRepo.UpdateCategory(newCategory));
 }

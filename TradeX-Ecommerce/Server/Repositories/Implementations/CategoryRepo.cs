@@ -23,8 +23,8 @@ public class CategoryRepo : ICategoryRepo
             }
             else
             {
-                newCategory!.Name = newCategory.Name!;
-                newCategory!.Description = newCategory.Description!;
+                //newCategory!.Name = newCategory.Name!;
+                //newCategory!.Description = newCategory.Description!;
                 appDbContext.Categories.Add(newCategory);
                 await appDbContext.SaveChangesAsync();
 
@@ -38,7 +38,7 @@ public class CategoryRepo : ICategoryRepo
         }
         else
         {
-            response.Message = "Category is empty";
+            response.Message = "Category object is empty";
             response.Success = false;
             response.CssClass = "danger fw-bold";
         }
