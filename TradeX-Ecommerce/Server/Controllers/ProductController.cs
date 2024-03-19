@@ -12,7 +12,11 @@ public class ProductController : ControllerBase
 
     //[Authorize(Roles = "Admin")]
     [HttpPost("AddProduct")]
-    public async Task<ActionResult<ServiceModel<Product>>> AddProduct(Product NewProduct) => Ok(await productRepo.AddProduct(NewProduct));
+    public async Task<ActionResult<ServiceModel<Product>>> AddProduct(Product NewProduct)
+    {
+
+        return Ok(await productRepo.AddProduct(NewProduct));
+    }
 
     [HttpGet]
     public async Task<ActionResult<ServiceModel<Product>>> GetProducts() => Ok(await productRepo.GetProducts());

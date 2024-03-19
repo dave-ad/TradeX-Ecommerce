@@ -27,5 +27,6 @@ public class Product
 
     //Relationship : many to one
     public Category? Category { get; set; }
-    public int CategoryId { get; set; } = 1;
+    //public int CategoryId { get; set; } = 1;
+    public int CategoryId { get; set; }
 }

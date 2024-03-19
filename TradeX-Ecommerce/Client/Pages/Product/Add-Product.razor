@@ -37,7 +37,7 @@
                 <input type="number" id="description" min="1" @bind="newProduct.Quantity"  class="form-control" />
                 <ValidationMessage For="@(()=> newProduct.Quantity)"></ValidationMessage>
             </div>
-@*             <div class="form-group mt-2">
+            <div class="form-group mt-2">
                 <label class="form-label" for="category">Category</label>
                 <select id="category" @bind="newProduct.CategoryId" class="form-control">
                     <option value="">-- Select Category --</option>
@@ -47,7 +47,7 @@
                     }
                 </select>
                 <ValidationMessage For="@(()=> newProduct.CategoryId)"></ValidationMessage>
-            </div> *@
+            </div>
             <div class="form-group mt-2">
                 <label class="form-label" for="image">Image</label>&nbsp; <span class="text-danger fw-bold">@uploadMessage</span>
                 <InputFile id="image" OnChange="OnFileChange" class="form-control"></InputFile>
