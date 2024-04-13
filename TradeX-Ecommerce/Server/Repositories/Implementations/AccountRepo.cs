@@ -1,13 +1,4 @@
-﻿using Microsoft.AspNetCore.Identity;
-using Microsoft.IdentityModel.Tokens;
-using System.IdentityModel.Tokens.Jwt;
-using System.Security.Claims;
-using System.Security.Cryptography;
-using System.Text;
-using TradeXEcommerce.Shared.Contracts;
-using TradeXEcommerce.Shared.DTO;
-using static TradeXEcommerce.Shared.DTO.ServiceResponses;
-
+﻿
 namespace TradeXEcommerce.Server.Repositories.Implementations;
 
 //public class AccountRepo : IUserAccount
