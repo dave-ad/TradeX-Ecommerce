@@ -1,6 +1,7 @@
 ﻿@page "/products"
 @page "/{url}"
 @inject IProductService productService
+@inject ICartService cartService
 
 @if (serviceModel.List != null)
 {
@@ -22,32 +23,33 @@
                             }
                         </div>
                         <div class="card-body">
-                            <p>
-                                <span class="text-primary">@product.Name </span>&nbsp; &nbsp;
+                            <p class="card-body-text">
+                                <span class="prodName">@product.Name </span>&nbsp; &nbsp;
                                 <br />
-                                <span class="text-secondary text-muted fs-6">@product.Description</span><br>
+                                <span class="prodDescription">@product.Description</span><br>
                                 @if (product.NewPrice != 0 && product.NewPrice < product.OriginalPrice)
                                 {
-                                    <span class="text-danger text-decoration-line-through" style="font-size:16px;"><i>₦ @product.OriginalPrice</i></span>
+                                    <span class="originalPrice text-decoration-line-through"><i>₦ @product.OriginalPrice</i></span>
                                     <span>&nbsp; &nbsp;</span>
-                                    <span class="badge bg-primary badge rounded-end bg-danger">Reduced</span>
+                                    <span class="badge rounded-end reducedbadge">Reduced</span>
                                     <br />
-                                    <span class="text-primary text-center" style="font-size:16px;"><i>₦ @product.NewPrice</i></span>
+                                    <span class="text-center newPrice" style="font-size:16px;font-weight: bold;"><i>₦ @product.NewPrice</i></span>
                                 }
                                 else
                                 {
-                                    <span class="text-danger" style="font-size:16px;"><i>₦ @product.OriginalPrice</i></span>
+                                    <span class="" style="color:#000;font-weight: bold;"><i>₦ @product.OriginalPrice</i></span>
                                 }
 
                             </p>
                         </div>
                     </a>
-                    @* <div class="card-footer bg-white">
-                        <button class="btn btn-outline-danger btn-sm">
-                            <i class="oi oi-cart fs-5"></i>
-                            Add to cart
+
+                    <div class="card-footer">
+                        <button class="btn btn-sm atcbtn" @onclick="async ()=> await AddProductToCart(product.Id)">
+                            @* <i class="oi oi-cart fs-5"></i> *@
+                            ADD TO CART
                         </button>
-                    </div> *@
+                    </div>
                 </div>
             </div>
         }
@@ -72,6 +74,10 @@ else
     [Parameter] public string Url { get; set; } = string.Empty;
     public ServiceModel<Product> serviceModel = new ServiceModel<Product>();
 
+    private int Quantity = 1;
+    private string? Message = string.Empty;
+    private string? CssClass = string.Empty;
+
     protected override async Task OnInitializedAsync()
     {
         await GetProducts();
@@ -86,5 +92,27 @@ else
         else
             serviceModel = await productService.GetProducts();
     }
+
+    private async Task AddProductToCart(int productId)
+    {
+        Message = "";
+        CssClass = "";
+        var product = serviceModel.List.FirstOrDefault(p => p.Id == productId);
+        if (product != null && Quantity >= 1 && Quantity <= product.Quantity)
+        {
+            var cartModel = new MyCartModel
+            {
+                ProductId = productId,
+                UserQuantity = Quantity
+            };
+            await cartService.AddToCart(cartModel);
+        }
+        else
+        {
+            Message = "Invalid quantity provided";
+            CssClass = "warning";
+        }
+    }
+
 }
 @* &#8358 ₦ &#x20A6  *@ @* Naira Symbol *@
