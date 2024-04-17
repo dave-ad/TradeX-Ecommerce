@@ -104,3 +104,77 @@ a, .btn-link {
     /* Never collapse the sidebar for wide screens */
     display: block;
 }
+
+/*PRODUCT CARD*/
+.card {
+    background-color: #f5f5f5;
+    border-radius: .75rem;
+    /*padding: 5px 5px 10px 0px;*/
+}
+
+
+.card img {
+    /*border: 1px solid blue;*/
+    height: 400px;
+    border-radius: 10px;
+}
+
+.card-header {
+    padding: .7rem 0rem;
+}
+
+.card-header,
+.card-footer {
+    border-bottom: none;
+    border-top: none;
+    background-color: transparent !important;
+}
+
+.card-img-top {
+    background-color: none;
+}
+
+.card-body {
+    padding: 0rem 1rem
+}
+
+.prodName {
+    color: black;
+}
+
+.prodDescription {
+    color: black;
+    font-size: 14.5px;
+}
+
+.originalPrice {
+    color: #8f2f67;
+    font-size: 16px;
+}
+
+.reducedbadge {
+    background-color: #8f2f67;
+}
+
+.newPrice {
+    color: #000000;
+    font-size: 16px;
+}
+
+
+.atcbtn {
+    background-color: #101010;
+    border-radius: 6px;
+    color: white;
+    font-size: 14px;
+    font-weight: bolder;
+    margin-bottom: 3px;
+    padding: 6px;
+    width: 100%;
+}
+
+/*MANAGE PRODUCTS*/
+.manageactions {
+    /*border: 1px solid red;*/
+    margin: -10px 0px 3px 0px;
+}

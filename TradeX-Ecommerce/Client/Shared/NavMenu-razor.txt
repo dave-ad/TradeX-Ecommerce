@@ -1,9 +1,14 @@
-@inject ICategoryService categoryService
+﻿@inject ICategoryService categoryService
 @inject NavigationManager NavigationManager
 
-?<div class="top-row ps-3 navbar navbar-dark">
+﻿<div class="top-row ps-3 navbar navbar-dark">
     <div class="container-fluid">
-        <a class="navbar-brand" href="">TradeXECommerce</a>
+        <span class="oi oi-monitor" style="color:white;" aria-hidden="true"></span>
+        @if (!@IconMenuActive)
+        {
+            <a class="navbar-brand" href="">TradeXECommerce</a>
+        }
+        
         <button title="Navigation menu" class="navbar-toggler" @onclick="ToggleNavMenu">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -13,68 +18,102 @@
     <nav class="flex-column">
         <div class="nav-item px-3">
             <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
-                <span class="oi oi-home" aria-hidden="true"></span> Home
+                <span class="oi oi-home" aria-hidden="true"></span> 
+                @if (!@IconMenuActive)
+                {
+                    <label>Home</label>
+                }
             </NavLink>
-        </div>
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" Match="NavLinkMatch.All">
-                <span class="oi oi-terminal" aria-hidden="true"></span>
-                <div class="btn-group">
-                    <button type="button" class="btn bg-none text-light dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                        Manage Products
-                    </button>
-                    <ul class="dropdown-menu bg-secondary">
-                        <li>
-                            <NavLink class="nav-link" href="addProduct" Match="NavLinkMatch.All">
-                                <span class="oi oi-plus p-1" aria-hidden="true"></span> Add Product
-                            </NavLink>
-                        </li>
-                        <li>
-                            <NavLink class="nav-link" href="manage-products" Match="NavLinkMatch.All">
-                                <span class="oi oi-arrow-circle-top p-1" aria-hidden="true"></span> Update/Delete
-                            </NavLink>
-                        </li>
-                    </ul>
-                </div>
-            </NavLink>
-        </div>
-        <div class="nav-item px-3">
-            <div class="btn-group">
-                <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                    Manage Products
-                </button>
-                <ul class="dropdown-menu">
-                    <li>
-                        <a class="dropdown-item" href="addProduct">Add Product</a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" href="manage-products">Update/Delete</a>
-                    </li>
-                </ul>
-            </div>
         </div>
         <div class="nav-item px-3">
             <NavLink class="nav-link" href="products">
-                <span class="oi oi-tag" aria-hidden="true"></span> Products
+                <span class="oi oi-tag" aria-hidden="true"></span>
+                @if (!@IconMenuActive)
+                {
+                    <label>Products</label>
+                }
             </NavLink>
         </div>
-        @* <div class="nav-item px-3">
-            <NavLink class="nav-link" href="addProduct" Match="NavLinkMatch.All">
-                <span class="oi oi-plus p-1" aria-hidden="true"></span> Add Product
-            </NavLink>
-        </div>        
+
+        @if (!@IconMenuActive)
+        {
+            <div class="text-light">Administration</div>
+        }
         <div class="nav-item px-3">
-            <NavLink class="nav-link" href="manage-products" Match="NavLinkMatch.All">
-                <span class="oi oi-arrow-circle-top p-1" aria-hidden="true"></span> Update / Delete
+            <NavLink class="nav-link" Match="NavLinkMatch.All">
+                <span class="oi oi-terminal" aria-hidden="true"></span>
+                    <div class="btn-group">
+                    @if (!@IconMenuActive)
+                    {
+                        <button type="button" class="btn bg-none text-light dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                            Manage Products
+                        </button>
+                    }
+                    <ul class="dropdown-menu bg-secondary">
+                            <li>
+                                @if (!@IconMenuActive)
+                                {
+                                    <NavLink class="nav-link" href="add-Product" Match="NavLinkMatch.All">
+                                        <span class="oi oi-plus p-1" aria-hidden="true"></span> Add Product
+                                    </NavLink>
+                                }
+                            </li>
+                            <li>
+                                @if (!@IconMenuActive)
+                                {
+                                    <NavLink class="nav-link" href="manage-products" Match="NavLinkMatch.All">
+                                        <span class="oi oi-arrow-circle-top p-1" aria-hidden="true"></span> Update/Delete
+                                    </NavLink>
+                                }
+                            </li>
+                        </ul>
+                    </div>
             </NavLink>
-        </div> *@
+        </div>
+        <div class="nav-item px-3">
+@*             @if (!@IconMenuActive)
+            {
+                <NavLink class="nav-link" href="manage-products" Match="NavLinkMatch.All">
+                    <span class="oi oi-arrow-circle-top p-1" aria-hidden="true"></span> Manage Products
+                </NavLink>
+            }
+            @if (!@IconMenuActive)
+            {
+                <NavLink class="nav-link" href="manage-products" Match="NavLinkMatch.All">
+                    <span class="oi oi-arrow-circle-top p-1" aria-hidden="true"></span> Manage Products
+                </NavLink>
+            } *@
+            <NavLink class="nav-link" href="manage-products" Match="NavLinkMatch.All">
+                <span class="oi oi-arrow-circle-top p-1" aria-hidden="true"></span>
+                @if (!@IconMenuActive)
+                {
+                    <label>Manage Products</label>
+                }
+            </NavLink>
+            <NavLink class="nav-link" href="manage-categories" Match="NavLinkMatch.All">
+                <span class="oi oi-arrow-circle-top p-1" aria-hidden="true"></span>
+                @if (!@IconMenuActive)
+                {
+                    <label>Manage Category</label>
+                }
+            </NavLink>
+        </div>
+
+        @if (!@IconMenuActive)
+        {
+            <div class="text-light">Categories</div>
+        }
         <div class="nav-item px-3">
             @if (serviceModel.List != null)
             {
                 foreach (var cat in serviceModel.List)
                 {
-                    <NavLink class="nav-link" href="@cat.Url" Match="NavLinkMatch.All">
-                        <span class="oi oi-arrow-right" aria-hidden="true"></span> @cat.Name
+                    <NavLink class="nav-link" href="@cat.Name" Match="NavLinkMatch.All">
+                        <span class="oi oi-arrow-circle-right" aria-hidden="true"></span>
+                        @if (!@IconMenuActive)
+                        {
+                            @cat.Name
+                        }
                     </NavLink>
                 }
             }
@@ -87,21 +126,49 @@
                 </div>
             }
         </div>
+
 @*         <div class="nav-item px-3">
-            <NavLink class="nav-link" href="counter">
-                <span class="oi oi-plus" aria-hidden="true"></span> Counter
-            </NavLink>
+                <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
+                    <span class="oi oi-tag p-1" aria-hidden="true"></span>
+                    @if (!@IconMenuActive)
+                    {
+                        <label>Update User Profile</label>
+                    }
+                </NavLink>
         </div>
         <div class="nav-item px-3">
-            <NavLink class="nav-link" href="fetchdata">
-                <span class="oi oi-list-rich" aria-hidden="true"></span> Fetch data
+            <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
+                <span class="oi oi-tag p-1" aria-hidden="true"></span>
+                @if (!@IconMenuActive)
+                {
+                    <label>Make Enquires</label>
+                }
             </NavLink>
         </div> *@
     </nav>
 </div>
 
+<div class="bottom-row">
+    <div class="icon-menu-arrow">
+        @if (!@IconMenuActive)
+        {
+            <span class="oi oi-arrow-left" style="color: white;" @onclick="ToggleIconMenu"></span>
+        }
+        else
+        {
+            <span class="oi oi-arrow-right" style="color: white;" @onclick="ToggleIconMenu"></span>
+        }
+    </div>
+</div>
+
 
 @code {
+    private bool IconMenuActive { get; set; } = false;
+
+    [Parameter]
+    public EventCallback<bool> ShowIconMenu { get; set; }
+
+
     ServiceModel<Category> serviceModel = new ServiceModel<Category>();
     private bool collapseNavMenu = true;
 
@@ -115,5 +182,12 @@
     protected override async Task OnInitializedAsync()
     {
         serviceModel = await categoryService.GetCategories();
+    }
+
+    private async Task ToggleIconMenu()
+    {
+        IconMenuActive = !IconMenuActive;
+        await ShowIconMenu.InvokeAsync(IconMenuActive);
+
     }
 }

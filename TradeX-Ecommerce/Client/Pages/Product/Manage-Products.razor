@@ -9,6 +9,7 @@
         <div class="row sticky-top mb-1">
             <div class="col-md-8 mt-1"><h3 class="text-muted" style="font-family:'Javanese Text'">Manage Products</h3></div>
         </div>
+        <a href="/add-Product">Add</a>
         <hr />
         @foreach (var product in serviceModel.List)
         {
@@ -24,26 +25,26 @@
                         </div>
                         <div class="card-body">
                             <p>
-                                <span class="text-primary">@product.Name </span>&nbsp; &nbsp;
+                                <span class="prodName">@product.Name </span>&nbsp; &nbsp;
                                 <br />
-                                <span class="text-secondary text-muted fs-6">@product.Description</span><br>
+                                <span class="prodDescription">@product.Description</span><br>
                                 @if (product.NewPrice != 0 && product.NewPrice < product.OriginalPrice)
                                 {
-                                    <span class="text-danger text-decoration-line-through" style="font-size:16px;"><i>₦ @product.OriginalPrice</i></span>
+                                    <span class="originalPrice text-decoration-line-through"><i>₦ @product.OriginalPrice</i></span>
                                     <span>&nbsp; &nbsp;</span>
-                                    <span class="badge bg-primary badge rounded-end bg-danger">Reduced</span>
+                                    <span class="badge rounded-end reducedbadge">Reduced</span>
                                     <br />
-                                    <span class="text-primary text-center" style="font-size:16px;"><i>₦ @product.NewPrice</i></span>
+                                    <span class="newPrice text-center" style="font-size:16px;font-weight: bold;"><i>₦ @product.NewPrice</i></span>
                                 }
                                 else
                                 {
-                                    <span class="text-danger" style="font-size:16px;"><i>₦ @product.OriginalPrice</i></span>
+                                    <span class="" style="color:#000;font-weight: bold;"><i>₦ @product.OriginalPrice</i></span>
                                 }
 
                             </p>
                         </div>
                     </a>
-                    <div class="card-footer bg-white">
+                    <div class="card-footer manageactions">
                         <button class="btn btn-outline-warning btn-sm float-start" @onclick="(()=> HandleUpdate(product.Id))">
                             <i class="oi oi-arrow-circle-top"></i>
                             Update
