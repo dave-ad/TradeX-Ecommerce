@@ -74,13 +74,13 @@ else
     </div>
 }
 
-<AuthorizeView Roles="User">
+@* <AuthorizeView Roles="User">
    <p>Hello, @context.User.Identity!.Name!, you are User</p>
 </AuthorizeView>
 
 <AuthorizeView Roles="Admin">
    <p>Hello, @context.User.Identity!.Name!, you are Admin</p>
-</AuthorizeView>
+</AuthorizeView> *@
 
 @code {
     string Message = string.Empty;
