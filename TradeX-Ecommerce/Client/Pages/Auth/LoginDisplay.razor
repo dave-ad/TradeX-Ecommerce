@@ -1,4 +1,4 @@
-﻿<AuthorizeView>
+﻿@* <AuthorizeView>
     <Authorized>
         Hello, @context.User.Identity!.Name!
         <a href="LogOut">Log out</a>
@@ -7,9 +7,8 @@
         <a href="Register">
             <i class="fa-solid fa-user-plus" style="color: #000000;"></i>
         </a>
-        @* <a href="Login">Log in</a> *@
         <a href="Login">
             <i class="fa-solid fa-right-to-bracket fa-bounce fa-lg" style="color: #000000;"></i>
         </a>
     </NotAuthorized>
-</AuthorizeView>
+</AuthorizeView> *@

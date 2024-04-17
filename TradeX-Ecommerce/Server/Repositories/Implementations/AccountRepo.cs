@@ -4,16 +4,16 @@ namespace TradeXEcommerce.Server.Repositories.Implementations;
 //public class AccountRepo : IUserAccount
 public class AccountRepo
 {
-    private readonly UserManager<ApplicationUser> _userManager;
+    //private readonly UserManager<ApplicationUser> _userManager;
     private readonly RoleManager<IdentityRole> _roleManager;
     private readonly IConfiguration _config;
 
-    public AccountRepo(UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager, IConfiguration config)
-    {
-        _userManager = userManager;
-        _roleManager = roleManager;
-        _config = config;
-    }
+    //public AccountRepo(UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager, IConfiguration config)
+    //{
+    //    _userManager = userManager;
+    //    _roleManager = roleManager;
+    //    _config = config;
+    //}
 
     //public async Task<GeneralResponse> CreateAccount(UserDTO userDTO)
     //{

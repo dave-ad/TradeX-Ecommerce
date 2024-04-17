@@ -4,7 +4,7 @@
 [ApiController]
 public class AuthenticationController : ControllerBase
 {
-    private readonly IUserAccount _userAccount;
+    //private readonly IUserAccount _userAccount;
 
     //public AuthenticationController(UserManager<IdentityUser> userManager, IConfiguration configuration, SignInManager<IdentityUser> signInManager, IUserAccount userAccount)
     //{
@@ -14,10 +14,10 @@ public class AuthenticationController : ControllerBase
     //    _userAccount = userAccount;
     //}
 
-    public AuthenticationController(IUserAccount userAccount)
-    {
-        _userAccount = userAccount;
-    }
+    //public AuthenticationController(IUserAccount userAccount)
+    //{
+    //    _userAccount = userAccount;
+    //}
 
     //[HttpPost("Register")]
     //public async Task<IActionResult> Register([FromBody] RegisterModel model)
@@ -44,12 +44,12 @@ public class AuthenticationController : ControllerBase
     //    return Ok(new RegisterStatus { Successful = true});
     //}
 
-    [HttpPost("Register")]
-    public async Task<IActionResult> Register(UserDTO userDTO)
-    {
-        var response = await _userAccount.CreateAccount(userDTO);
-        return Ok(response);
-    }
+    //[HttpPost("Register")]
+    //public async Task<IActionResult> Register(UserDTO userDTO)
+    //{
+    //    var response = await _userAccount.CreateAccount(userDTO);
+    //    return Ok(response);
+    //}
 
     //[HttpPost("Login")]
     //public async Task<IActionResult> Login([FromBody] LoginModel login)
@@ -90,10 +90,10 @@ public class AuthenticationController : ControllerBase
     //}
     //}
 
-    [HttpPost("Login")]
-    public async Task<IActionResult> Login(LoginDTO loginDTO)
-    {
-        var response = await _userAccount.LoginAccount(loginDTO);
-        return Ok(response);
-    }
+    //[HttpPost("Login")]
+    //public async Task<IActionResult> Login(LoginDTO loginDTO)
+    //{
+    //    var response = await _userAccount.LoginAccount(loginDTO);
+    //    return Ok(response);
+    //}
 }

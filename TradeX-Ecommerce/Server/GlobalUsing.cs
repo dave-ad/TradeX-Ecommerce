@@ -15,7 +15,7 @@ global using System.Text;
 global using TradeXEcommerce.Server.Data;
 global using TradeXEcommerce.Server.Repositories.Interfaces;
 global using TradeXEcommerce.Server.Repositories.Implementations;
-global using TradeXEcommerce.Shared.Contracts;
+//global using TradeXEcommerce.Shared.Contracts;
 global using TradeXEcommerce.Shared.DTO;
 global using TradeXEcommerce.Shared.Models;
 
