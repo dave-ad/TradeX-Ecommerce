@@ -85,3 +85,9 @@
         display: block;
     }
 }
+
+/*    @media (min-width: 641px) {
+        .navbar-toggler {
+            display: none;
+        }
+    }*/
