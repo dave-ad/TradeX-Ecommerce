@@ -4,16 +4,40 @@
 @inject ILocalStorageService localStorageService
 @inject NavigationManager navigationManager
 <div class="page">
-    <div class="sidebar" style="@IconMenuCssClass">
+@*     <div class="sidebar" style="@IconMenuCssClass">
         <NavMenu ShowIconMenu="ToggleIconMenu" />
-    </div>
+    </div> *@
 
     <main>
-        <div class="top-row px-4">
+        @* <div class="top-row px-4 topnav"> *@
+        <div class="topnav">
+            <div class="topnav-left">
+                <a>
+                    <img src="../wwwroot/img/logo_trial__1_-removebg-preview.png" alt="tradex logo" class=""/>
+                </a>
+            </div>
+
             @* <TradeXEcommerce.Client.Pages.Auth.LoginDisplay></TradeXEcommerce.Client.Pages.Auth.LoginDisplay> *@
-            @* <a href="https://docs.microsoft.com/aspnet/" target="_blank">About</a> *@
-            <div class="p-3">
-                <button type="button" class="btn btn-outline-danger position-relative" @onclick="NavigateToCart">
+            <div class="top-centered">
+                <a href="/">Home</a>
+                <a href="/products">Shop</a>
+                <a href="/manage-categories">Category</a>
+                <a href="https://docs.microsoft.com/aspnet/" target="_blank">About Us</a>
+                <a href="#">Blog</a>
+                <a href="#">Contact</a>
+            </div>
+            <div class=" topnav-right">
+                <a href="#" @onclick="NavigateToCart">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </a>
+                <a href="/cart">
+                    <i class="fa-solid fa-cart-shopping" style="color: #000000;"></i>
+
+                </a>
+                <a href="login">
+                    <i class="fa-regular fa-user"></i>
+                </a>
+                @* <button type="button" class="btn btn-outline-danger position-relative" @onclick="NavigateToCart">
                     <i class="fa-solid fa-cart-shopping" style="color: #000000;"></i>
                     Cart
                     <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger mt-1">
@@ -23,8 +47,9 @@
                         @ServiceCount
                         <span class="visually-hidden">unread message</span>
                     </span>
-                </button>
+                </button> *@
             </div>
+
         </div>
 
         <article class="content px-4">

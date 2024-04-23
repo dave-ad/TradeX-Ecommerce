@@ -1,4 +1,4 @@
-@inject ICategoryService categoryService
+﻿@inject ICategoryService categoryService
 @inject NavigationManager NavigationManager
 
 ﻿<div class="top-row ps-3 navbar navbar-dark">
@@ -8,7 +8,7 @@
         {
             <a class="navbar-brand" href="">TradeXECommerce</a>
         }
-        
+
         <button title="Navigation menu" class="navbar-toggler" @onclick="ToggleNavMenu">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -18,7 +18,7 @@
     <nav class="flex-column">
         <div class="nav-item px-3">
             <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
-                <span class="oi oi-home" aria-hidden="true"></span> 
+                <span class="oi oi-home" aria-hidden="true"></span>
                 @if (!@IconMenuActive)
                 {
                     <label>Home</label>
@@ -84,23 +84,23 @@
             }
         </div>
 
-@*         <div class="nav-item px-3">
-                <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
-                    <span class="oi oi-tag p-1" aria-hidden="true"></span>
-                    @if (!@IconMenuActive)
-                    {
-                        <label>Update User Profile</label>
-                    }
-                </NavLink>
+        @*         <div class="nav-item px-3">
+        <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
+        <span class="oi oi-tag p-1" aria-hidden="true"></span>
+        @if (!@IconMenuActive)
+        {
+        <label>Update User Profile</label>
+        }
+        </NavLink>
         </div>
         <div class="nav-item px-3">
-            <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
-                <span class="oi oi-tag p-1" aria-hidden="true"></span>
-                @if (!@IconMenuActive)
-                {
-                    <label>Make Enquires</label>
-                }
-            </NavLink>
+        <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
+        <span class="oi oi-tag p-1" aria-hidden="true"></span>
+        @if (!@IconMenuActive)
+        {
+        <label>Make Enquires</label>
+        }
+        </NavLink>
         </div> *@
     </nav>
 </div>
@@ -138,6 +138,7 @@
 
     protected override async Task OnInitializedAsync()
     {
+        collapseNavMenu = true;
         serviceModel = await categoryService.GetCategories();
     }
 
