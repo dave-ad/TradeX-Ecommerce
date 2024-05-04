@@ -101,57 +101,45 @@ a, .btn-link {
 }
 
 /*CSS*/
-/*Top Nav*/
-.topnav {
-    border-bottom: 1px solid black;
-    position: relative;
+/*Navbar*/
+.navbar{
     overflow: hidden;
-    padding: 0 125px;
-
-    text-align: center;
 }
 
-.topnav div {
-    padding: 14px 16px;
-    text-align: center;
-    display: inline-block;
+.navbar-brand {
 }
 
-.topnav a {
-    color: black;
+.navbar-centered li {
+    color: black !important;
     font-size: 17px;
-    padding: 14px 16px;
+    padding: 6px 16px;
     text-align: center;
     text-decoration: none;
 }
 
-.topnav-left {
-    float: left;
+.custom-nav-link {
+    color: black !important;
 }
 
-.top-centered a:hover{
-    border-bottom: 3px solid pink;
+.custom-nav-link:hover {
+    border-bottom: 2px solid #000;
+    color: black !important;
 }
 
-.topnav-right {
-    float: right;
+.navbar-right a{
+    padding: 10px 0px 0px 0px;
+    margin: 5px;
+    color: black;
 }
 
-.topnav-right a {
-    margin: 4px;
-    padding: 2px;
-}
 
 /*PRODUCT CARD*/
 .card {
     background-color: #f5f5f5;
     border-radius: .75rem;
-    /*padding: 5px 5px 10px 0px;*/
 }
 
-
 .card img {
-    /*border: 1px solid blue;*/
     height: 400px;
     border-radius: 10px;
 }
@@ -212,7 +200,6 @@ a, .btn-link {
 
 /*MANAGE PRODUCTS*/
 .manageactions {
-    /*border: 1px solid red;*/
     margin: -10px 0px 3px 0px;
 }
 
